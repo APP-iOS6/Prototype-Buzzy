@@ -20,6 +20,7 @@ struct HomeView: View {
 }
 
 struct HomeScrollView: View {
+    private var keyword: PartTimeKeyWord = .GoodMood
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -42,9 +43,9 @@ struct HomeScrollView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(Announcement.annoucementData) { data in
-                        NavigationLink(destination: CompanyDetailView(announcement: data)) {
+                        NavigationLink(destination: DetailView(announcement: data)) {
                             CompanyContentView(announcement: data)
-                                .frame(width: .infinity, height: (200))
+                                .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
