@@ -10,13 +10,28 @@ import SwiftUI
 struct SettingsView: View {
     @State private var showAlert = false
     @State private var isLoggedOut = false
+    @State private var searchText: String = ""
     
     var body: some View {
         
         VStack(alignment: .center, spacing: 20) {
-            TextField("검색어를 입력하세요", text: .constant(""))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            HStack {
+                Image(systemName: "magnifyingglass")
+                TextField("검색어를 입력하세요", text: $searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                if !searchText.isEmpty {
+                    Button(action: {
+                        searchText = ""
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.gray)
+                            
+                    }
+                }
+                
+            }
+            .padding(3)
             
             Button {
                 print("공지사항 진입")
@@ -53,6 +68,16 @@ struct SettingsView: View {
                 print("고객센터 진입")
             } label: {
                 Text("고객센터")
+                    .font(.semibold20)
+            }
+            .frame(width: 340, height: 50)
+            .background(Color(.systemGray5))
+            .cornerRadius(10)
+            
+            Button {
+                print("알림설정 진입")
+            } label: {
+                Text("알림설정")
                     .font(.semibold20)
             }
             .frame(width: 340, height: 50)
