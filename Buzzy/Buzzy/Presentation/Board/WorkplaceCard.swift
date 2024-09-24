@@ -13,7 +13,7 @@ public struct WorkplaceCard: View {
     let description: String
     let onTitleChange: (String) -> Void
     let onSubtitleChange: (String) -> Void
-
+    
     // 회사별 별점을 관리하는 딕셔너리
     private let companyStars: [String: Int] = [
         "스타벅스": 3,
@@ -24,49 +24,43 @@ public struct WorkplaceCard: View {
         "홍콩반점": 1,
         "유니클로": 1
     ]
-
+    
     // 현재 회사의 별점을 계산하는 계산 속성
     private var starCount: Int {
         companyStars[title] ?? 0
     }
-
+    
     public var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 4) {
             if let uiImage = UIImage(named: imageName) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 70, height: 70)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 6)
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
+                    .frame(width: 60, height: 70)
                     .foregroundColor(.gray)
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 6)
             }
-
-            TextField("제목", text: Binding(
-                get: { title },
-                set: { onTitleChange($0) }
-            ))
-            .font(.bold16)
-            .multilineTextAlignment(.center)
-            .padding(.bottom, -7)
-
-            TextField("부제목", text: Binding(
-                get: { description },
-                set: { onSubtitleChange($0) }
-            ))
-            .font(.semibold12)
-            .foregroundColor(.gray)
-            .multilineTextAlignment(.center)
-
-            HStack(spacing: 3) {
+            
+            Text(title)
+                .font(.bold16)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, -2)
+            
+            Text(description)
+                .font(.semibold12)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+            
+            HStack(spacing: 5) {
                 ForEach(0..<3) { index in
                     Image(systemName: index < starCount ? "star.fill" : "star")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.yellow)
                 }
             }
         }

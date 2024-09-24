@@ -14,9 +14,9 @@ public struct TooltipView: View {
         Text(text)
             .font(.semibold16)
             .foregroundColor(.white)
-            .padding(8)
-            .frame(width: 180)
-            .background(CustomTooltip().fill(Color.gray.opacity(0.9)))
+            .padding(6)
+            .frame(width: 160)
+            .background(CustomTooltip().fill(Color.gray.opacity(0.8)))
     }
 }
 
