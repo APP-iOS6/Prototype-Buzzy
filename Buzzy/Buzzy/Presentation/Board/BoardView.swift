@@ -53,7 +53,7 @@ public struct BoardView: View {
                         }
                     }
                     Spacer()
-//                    SortOrderMenu(sortOrder: $sortOrder)
+                    SortOrderMenu(sortOrder: $sortOrder)
                 }
                 .padding()
                 
