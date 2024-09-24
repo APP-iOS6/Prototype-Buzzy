@@ -142,9 +142,9 @@ struct MyWalletPointView: View {
                 }
             }
             .padding(.horizontal)
+            .padding(.bottom, 20)
         }
         .navigationTitle("지갑 포인트")
-        .padding()
     }
 }
 

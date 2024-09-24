@@ -50,7 +50,6 @@ struct MyCommentsView: View {
                 }
             }
             .navigationTitle("내가 작성한 댓글")
-            .padding(.horizontal, 20.0)
         }
         .padding(.top, 8)
     }

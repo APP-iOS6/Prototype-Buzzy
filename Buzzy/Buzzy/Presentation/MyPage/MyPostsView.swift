@@ -87,7 +87,6 @@ struct MyPostsView: View {
                 }
             }
             .navigationTitle("내가 작성한 글")
-            .padding(.horizontal, 20.0)
         }
         .padding(.top, 8)
     }

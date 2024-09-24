@@ -90,14 +90,6 @@ struct MyPageView: View {
                         }
                         Divider()
                         
-                        NavigationLink {
-                            
-                        } label: {
-                            Text("알림설정")
-                                .font(.regular20)                                .foregroundColor(.black)
-                        }
-                        Divider()
-                        
                         
                         NavigationLink {
                             SettingsView()
@@ -112,7 +104,7 @@ struct MyPageView: View {
             Spacer()
         }
         .navigationTitle("마이 페이지")
-        .padding(.horizontal, 24.0)
+        .padding(.horizontal, 15)
     }
 }
 

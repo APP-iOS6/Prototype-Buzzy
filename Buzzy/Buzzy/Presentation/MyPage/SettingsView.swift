@@ -48,6 +48,7 @@ struct SettingsView: View {
             .background(Color(.systemGray5))
             .cornerRadius(10)
             
+            
             Button {
                 print("고객센터 진입")
             } label: {
@@ -84,7 +85,7 @@ struct SettingsView: View {
             Spacer()
         }
             .navigationTitle("환경설정")
-            .padding(.horizontal, 20.0)
+            .padding(.horizontal)
             .padding(.top, 10)
     }
 }
