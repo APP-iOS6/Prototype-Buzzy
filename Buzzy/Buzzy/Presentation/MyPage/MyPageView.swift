@@ -24,7 +24,7 @@ struct MyPageView: View {
                                 Circle().stroke(Color.black, lineWidth: 1))
                         
                         VStack(alignment: .leading) {
-                            Text("열정알바")
+                            Text("마동석")
                                 .font(.title)
                                 .fontWeight(.bold)
                             
@@ -42,8 +42,9 @@ struct MyPageView: View {
                     HStack {
                         Spacer()
                         
-                        Button {
-                            print("지원서 관리")
+                        
+                        NavigationLink {
+                            ProfileDetailsView()
                         } label: {
                             Text("지원서 관리")
                                 .font(.headline)
@@ -126,7 +127,7 @@ struct MyPageView: View {
             }
             Spacer()
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, 24.0)
     }
 }
 
