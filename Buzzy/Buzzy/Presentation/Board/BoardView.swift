@@ -12,8 +12,8 @@ public struct BoardView: View {
     @State private var sortOrder: SortOrder = .recommended
     @State private var showingDifficultyExplanation = false
     @State private var tooltipPosition: CGPoint = .zero
-    @State private var isExpanded: Bool = false
-    @State private var expandedHeight: CGFloat = 50
+//    @State private var isExpanded: Bool = false
+//    @State private var expandedHeight: CGFloat = 50
     
     public enum Tab {
         case tips, qa
@@ -37,23 +37,23 @@ public struct BoardView: View {
     public var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-//                WorkplaceDifficultyView(
-//                    workplaces: $workplaces,
-//                    showingDifficultyExplanation: $showingDifficultyExplanation,
-//                    tooltipPosition: $tooltipPosition
-//                )
+                WorkplaceDifficultyView(
+                    workplaces: $workplaces,
+                    showingDifficultyExplanation: $showingDifficultyExplanation,
+                    tooltipPosition: $tooltipPosition
+                )
 
                 HStack {
                     HStack(spacing: 10) {
-//                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
-//                            selectedTab = .tips
-//                        }
-//                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
-//                            selectedTab = .qa
-//                        }
+                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
+                            selectedTab = .tips
+                        }
+                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
+                            selectedTab = .qa
+                        }
                     }
                     Spacer()
-//                    SortOrderMenu(sortOrder: $sortOrder)
+                    SortOrderMenu(sortOrder: $sortOrder)
                 }
                 .padding()
                 
@@ -61,9 +61,9 @@ public struct BoardView: View {
                     LazyVStack(spacing: 15) {
                         ForEach(0..<20) { _ in
                             if selectedTab == .tips {
-//                                TipPostView()
+                                TipPostView()
                             } else {
-//                                QAPostView()
+                                QAPostView()
                             }
                         }
                     }
@@ -75,21 +75,21 @@ public struct BoardView: View {
             
             // 하단에 ExpandedTabView 추가
 //            ExpandedTabView(isExpanded: $isExpanded, expandedHeight: $expandedHeight)
-                .frame(height: expandedHeight)
-                .background(Color.white)
-                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
-                .animation(.easeInOut, value: expandedHeight)
-                .offset(y: isExpanded ? 50 : expandedHeight - 50)
+//                .frame(height: expandedHeight)
+//                .background(Color.white)
+//                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
+//                .animation(.easeInOut, value: expandedHeight)
+//                .offset(y: isExpanded ? 50 : expandedHeight - 50)
         }
     }
     
     @ViewBuilder
     public var tooltipOverlay: some View {
         if showingDifficultyExplanation {
-//            TooltipView(text: "업무 난이도를 평가해요\n★쉬움\n★★중간\n★★★어려움")
-//                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
-//                .transition(.opacity)
-//                .zIndex(2)
+            TooltipView(text: "업무 난이도를 평가해요\n★쉬움\n★★중간\n★★★어려움")
+                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
+                .transition(.opacity)
+                .zIndex(2)
         }
     }
     
