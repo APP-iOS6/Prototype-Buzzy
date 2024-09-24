@@ -13,34 +13,19 @@ struct HomeRankingListView: View {
         List {
             ForEach(Array(viewModel.sortedRanks.enumerated()), id: \.element.id) { index, rank in
                 HStack {
-                    //임시로 넣어봤는데 안어울려서 바꾸고 ui 위치 맞게 조정 예정
-                    if index == 0 {
-                        Image("gold")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    }
-                    else if index == 1 {
-                        Image("silver")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    }
-                    else if index == 2 {
-                        Image("bronze")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    } else{
-                        Text("\(index + 1).") // 순위 표시
-                            .bold()
-                            .foregroundColor(.black)
-                            .padding()
-                    }
+                    //일단 그냥 이미지로 안하고 숫자로 할게용
+                    Text("\(index + 1).") // 순위 표시
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding()
+                    //                    }
                     Image(rank.logo)
                         .resizable()
                         .frame(width: 40, height: 40)
                         .foregroundColor(.yellow)
                     VStack(alignment: .leading) {
                         Text(rank.name)
-                            .font(.system(size: 16, weight: .bold))
+                            .font(.bold16)
                         HStack(spacing: 0) {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.yellow)
