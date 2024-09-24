@@ -14,7 +14,8 @@ enum PartTimeKeyWord: String {
     case highRating = "평점이 높아요"
 }
 
-struct Announcement {
+struct Announcement: Identifiable {
+    var id = UUID()
     let title: String
     let company: String
     let imageName: String
@@ -22,6 +23,12 @@ struct Announcement {
     static let annoucementData = [
         Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", imageName: "company6"),
         Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company5"),
+        Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", imageName: "company7"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company8"),
+        Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", imageName: "company1"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company2"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company3"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company4")
     ]
     
 }
