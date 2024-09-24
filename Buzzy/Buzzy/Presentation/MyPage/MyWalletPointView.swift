@@ -128,6 +128,7 @@ struct WalletView: View {
                 Spacer()
                 
                 Button(action: {
+                    print("포인트 사용")
                 }) {
                     Text("포인트 사용")
                         .foregroundColor(.white)
