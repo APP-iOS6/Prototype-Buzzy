@@ -47,6 +47,11 @@ extension Font {
     static var regular16: Font {
         return Font.custom("Pretendard-Regular", size: 16)
     }
+    
+    static var regular14: Font {
+        return Font.custom("Pretendard-Regular", size: 14)
+    }
+    
     static var regular12: Font {
         return Font.custom("Pretendard-Regular", size: 12)
     }
