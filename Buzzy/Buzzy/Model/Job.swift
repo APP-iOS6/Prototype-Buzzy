@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+enum PartTimeKeyWord: String {
+    case GoodMood = "분위기가 좋아요"
+    case region = "에서 많이 봤어요"
+    case highSalary = "시급이 높아요"
+    case highRating = "평점이 높아요"
+}
+
+struct Announcement {
+    let title: String
+    let company: String
+    let image: String
+    
+    static let annoucementData = [
+        Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", image: "company6"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", image: "company5"),
+    ]
+    
+}
