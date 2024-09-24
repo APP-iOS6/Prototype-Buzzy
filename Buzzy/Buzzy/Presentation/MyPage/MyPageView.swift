@@ -67,7 +67,7 @@ struct MyPageView: View {
                         Divider()
                         
                         NavigationLink {
-                            
+                            MyCommentsView()
                         } label: {
                             Text("내가 작성한 댓글")
                                 .font(.system(size: 20))
