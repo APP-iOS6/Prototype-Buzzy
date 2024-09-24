@@ -45,12 +45,12 @@ public struct BoardView: View {
 
                 HStack {
                     HStack(spacing: 10) {
-//                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
-//                            selectedTab = .tips
-//                        }
-//                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
-//                            selectedTab = .qa
-//                        }
+                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
+                            selectedTab = .tips
+                        }
+                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
+                            selectedTab = .qa
+                        }
                     }
                     Spacer()
 //                    SortOrderMenu(sortOrder: $sortOrder)
