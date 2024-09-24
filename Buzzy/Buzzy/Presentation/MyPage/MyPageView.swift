@@ -22,6 +22,7 @@ struct MyPageView: View {
                             .clipShape(Circle())
                             .overlay(
                                 Circle().stroke(Color.black, lineWidth: 1))
+                            .padding(.leading, 5)
                         
                         VStack(alignment: .leading) {
                             Text("마동석")
@@ -37,7 +38,7 @@ struct MyPageView: View {
                         }
                     }
                     .padding(.top, 32)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 18)
                     
                     HStack {
                         Spacer()
@@ -47,9 +48,9 @@ struct MyPageView: View {
                             ProfileDetailsView()
                         } label: {
                             Text("지원서 관리")
-                                .font(.headline)
+                                .font(.title2)
                         }
-                        .frame(width: 300, height: 40)
+                        .frame(width: 340, height: 50)
                         .background(.yellow)
                         .cornerRadius(10)
                         
@@ -57,7 +58,7 @@ struct MyPageView: View {
                     }
                     .padding(.bottom, 25)
                     
-                    VStack(alignment: .leading, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 22) {
                         
                         NavigationLink {
                             

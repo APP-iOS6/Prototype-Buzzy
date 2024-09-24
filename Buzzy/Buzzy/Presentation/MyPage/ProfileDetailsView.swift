@@ -21,6 +21,7 @@ struct ProfileDetailsView: View {
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.black, lineWidth: 1))
+                        .padding(.leading, 5)
                     
                     VStack(alignment: .leading) {
                         Text("마동석")
@@ -44,9 +45,9 @@ struct ProfileDetailsView: View {
                         } label: {
                             Text("+추가하기")
                                 .font(.title3)
-                                .frame(width: 350, height: 50)
+                                .frame(width: 340, height: 50)
                                 .background(.yellow)
-                                .cornerRadius(10)
+                                .cornerRadius(10)                            
                         }
                         Spacer()
                     }
@@ -66,7 +67,7 @@ struct ProfileDetailsView: View {
                         } label: {
                             Text("+추가하기")
                                 .font(.title3)
-                                .frame(width: 350, height: 50)
+                                .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
                         }
@@ -88,7 +89,7 @@ struct ProfileDetailsView: View {
                         } label: {
                             Text("+추가하기")
                                 .font(.title3)
-                                .frame(width: 350, height: 50)
+                                .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
                         }
@@ -113,7 +114,7 @@ struct ProfileDetailsView: View {
                         } label: {
                             Text("+추가하기")
                                 .font(.title3)
-                                .frame(width: 350, height: 50)
+                                .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
                         }
