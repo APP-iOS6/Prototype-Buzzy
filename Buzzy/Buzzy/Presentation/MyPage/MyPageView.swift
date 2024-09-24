@@ -28,6 +28,25 @@ struct MyPageView: View {
                 }
                 
                 
+                .padding(.bottom, 20)
+                
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("지원서 관리")
+                            .font(.headline)
+                    }
+                    .frame(width: 300, height: 40)
+                    .background(.yellow)
+                    .cornerRadius(10)
+
+                    Spacer()
+                }
+                
+                
                 
                 
             }
