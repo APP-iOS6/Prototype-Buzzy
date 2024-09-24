@@ -24,8 +24,8 @@ public struct PostView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            Text(title).font(.headline)
-            Text(content).font(.subheadline).foregroundColor(.gray)
+            Text(title).font(.semibold20)
+            Text(content).font(.regular16).foregroundColor(.gray)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .modifier(PostStyle())

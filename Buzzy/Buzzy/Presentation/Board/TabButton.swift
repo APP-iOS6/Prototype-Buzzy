@@ -15,6 +15,7 @@ public struct TabButton: View {
     public var body: some View {
         Button(action: action) {
             Text(title)
+                .font(.semibold20)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .foregroundColor(isSelected ? .white : .orange)

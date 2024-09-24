@@ -16,6 +16,7 @@ public struct TooltipButton: View {
             Image(systemName: "info.circle")
                 .foregroundColor(Color.gray.opacity(0.7))
         }
+        .font(.semibold16)
         .background(GeometryReader { geometry in
             Color.clear.preference(key: ButtonPositionKey.self,
                                    value: geometry.frame(in: .global).origin)

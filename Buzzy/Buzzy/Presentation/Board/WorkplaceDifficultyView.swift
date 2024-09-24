@@ -18,6 +18,7 @@ public struct WorkplaceDifficultyView: View {
                 Text("업무 난이도") // .font(.bold24)
                 TooltipButton(showTooltip: $showingDifficultyExplanation, updatePosition: { tooltipPosition = $0 })
             }
+            .font(.semibold20)
             .padding(.leading)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -36,6 +37,7 @@ public struct WorkplaceDifficultyView: View {
                         )
                     }
                 }
+                .font(.semibold16)
                 .padding(.horizontal)
             }
         }

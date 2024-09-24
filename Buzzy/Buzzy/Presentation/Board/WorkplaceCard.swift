@@ -51,7 +51,7 @@ public struct WorkplaceCard: View {
                 get: { title },
                 set: { onTitleChange($0) }
             ))
-            .font(.headline)
+            .font(.bold16)
             .multilineTextAlignment(.center)
             .padding(.bottom, -7)
 
@@ -59,7 +59,7 @@ public struct WorkplaceCard: View {
                 get: { description },
                 set: { onSubtitleChange($0) }
             ))
-            .font(.subheadline)
+            .font(.semibold12)
             .foregroundColor(.gray)
             .multilineTextAlignment(.center)
 
@@ -73,7 +73,7 @@ public struct WorkplaceCard: View {
         .frame(width: 110, height: 165)
         .background(Color.white)
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 2)
     }
 }
 

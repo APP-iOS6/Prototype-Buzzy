@@ -12,6 +12,7 @@ public struct TooltipView: View {
     
     public var body: some View {
         Text(text)
+            .font(.semibold16)
             .foregroundColor(.white)
             .padding(8)
             .frame(width: 180)

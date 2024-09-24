@@ -20,6 +20,7 @@ public struct SortOrderMenu: View {
                 Text(sortOrder.rawValue)
                 Image(systemName: "chevron.down")
             }
+            .font(.bold16)
             .foregroundColor(.orange)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
