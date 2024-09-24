@@ -14,10 +14,19 @@ struct MyPageView: View {
             VStack(alignment: .leading, spacing: 16) {
                 
                 HStack(spacing: 16) {
+                    Image("1")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.black, lineWidth: 1))
                     
-                    Circle()
-                    
+                    Text("열정알바")
+                        .font(.title)
+                        .fontWeight(.bold)
                 }
+                
                 
                 
                 
