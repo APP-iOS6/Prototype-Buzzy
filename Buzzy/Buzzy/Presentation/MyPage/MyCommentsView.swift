@@ -15,6 +15,7 @@ struct Comment: Identifiable {
 }
 
 struct MyCommentsView: View {
+    @State private var searchText: String = ""
     
     let comments: [Comment] = [
         Comment(title: "편의점 알바, 정말 힘들었어요!", comment: "뭐가 힘들다고 난리임;", date: "2024-09-24"),
@@ -28,10 +29,23 @@ struct MyCommentsView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                TextField("검색어를 입력하세요", text: .constant(""))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
                 
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    TextField("검색어를 입력하세요", text: $searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    if !searchText.isEmpty {
+                        Button(action: {
+                            searchText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(.gray)
+                                
+                        }
+                    }
+                    
+                }
                 ForEach(comments) { com in
                     Text(com.title)
                         .font(.semibold20)

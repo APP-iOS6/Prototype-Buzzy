@@ -18,6 +18,7 @@ struct Post: Identifiable {
 
 
 struct MyPostsView: View {
+    @State private var searchText: String = ""
     
     let posts = [
         Post(title: "편의점 알바, 정말 힘들어요!",
@@ -55,9 +56,22 @@ struct MyPostsView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                TextField("검색어를 입력하세요", text: .constant(""))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    TextField("검색어를 입력하세요", text: $searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    if !searchText.isEmpty {
+                        Button(action: {
+                            searchText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(.gray)
+                                
+                        }
+                    }
+                    
+                }
                 
                 ForEach(posts) { post in
                     Text(post.title)
