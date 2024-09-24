@@ -12,8 +12,8 @@ public struct BoardView: View {
     @State private var sortOrder: SortOrder = .recommended
     @State private var showingDifficultyExplanation = false
     @State private var tooltipPosition: CGPoint = .zero
-    @State private var isExpanded: Bool = false
-    @State private var expandedHeight: CGFloat = 50
+//    @State private var isExpanded: Bool = false
+//    @State private var expandedHeight: CGFloat = 50
     
     public enum Tab {
         case tips, qa
@@ -75,11 +75,11 @@ public struct BoardView: View {
             
             // 하단에 ExpandedTabView 추가
 //            ExpandedTabView(isExpanded: $isExpanded, expandedHeight: $expandedHeight)
-                .frame(height: expandedHeight)
-                .background(Color.white)
-                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
-                .animation(.easeInOut, value: expandedHeight)
-                .offset(y: isExpanded ? 50 : expandedHeight - 50)
+//                .frame(height: expandedHeight)
+//                .background(Color.white)
+//                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
+//                .animation(.easeInOut, value: expandedHeight)
+//                .offset(y: isExpanded ? 50 : expandedHeight - 50)
         }
     }
     
