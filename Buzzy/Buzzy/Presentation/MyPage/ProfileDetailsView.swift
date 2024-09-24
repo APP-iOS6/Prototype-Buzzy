@@ -6,22 +6,39 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileDetailsView: View {
+    @State private var selectedImage: UIImage? = nil
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var showImagePicker: Bool = false
+    
     var body: some View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 
                 HStack(spacing: 16) {
-                    Image("1")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 80, height: 80)
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.black, lineWidth: 1))
-                        .padding(.leading, 5)
+                    
+                    if let selectedImage = selectedImage {
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color.black, lineWidth: 1))
+                            .padding(.leading, 5)
+                    } else {
+                        Image("1")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle().stroke(Color.black, lineWidth: 1))
+                            .padding(.leading, 5)
+                    }
                     
                     VStack(alignment: .leading) {
                         Text("마동석")
@@ -30,6 +47,11 @@ struct ProfileDetailsView: View {
                             .font(.regular16)
                     }
                 }
+                .onTapGesture {
+                    showImagePicker = true
+                }
+                
+                
                 .padding(.top, 32)
                 Divider()
                     .padding(.bottom, 20)
@@ -126,6 +148,17 @@ struct ProfileDetailsView: View {
             }
             .navigationTitle("지원서 관리")
             .padding(.horizontal, 24.0)
+        }
+        .photosPicker(isPresented: $showImagePicker, selection: $selectedItem)
+                .onChange(of: selectedItem) { newItem in
+                    if let newItem = newItem {
+                        Task {
+                            if let imageData = try? await newItem.loadTransferable(type: Data.self),
+                               let uiImage = UIImage(data: imageData) {
+                                selectedImage = uiImage
+                    }
+                }
+            }
         }
     }
 }
