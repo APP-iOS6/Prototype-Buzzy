@@ -25,8 +25,9 @@ struct ProfileDetailsView: View {
                     
                     VStack(alignment: .leading) {
                         Text("마동석")
-                            .font(.system(size: 22, weight: .bold))
+                            .font(.bold24)
                         Text("남성·53세·성동구")
+                            .font(.regular16)
                     }
                 }
                 .padding(.top, 32)
@@ -36,7 +37,7 @@ struct ProfileDetailsView: View {
                 
                 VStack(alignment: .leading, spacing: 14) {
                     Text("자기 소개")
-                        .font(.title)
+                        .font(.semibold24)
                     HStack {
                         Spacer()
                         
@@ -44,7 +45,7 @@ struct ProfileDetailsView: View {
                             print("자기소개 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.title3)
+                                .font(.regular20)
                                 .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
@@ -52,13 +53,13 @@ struct ProfileDetailsView: View {
                         Spacer()
                     }
                     Text("Tip 50자 이상 작성하면 채용될 확률이 15% 올라요!")
-                        .font(.subheadline)
+                        .font(.regular14)
                         .padding(.bottom, 10)
                     Divider()
                     
                     
                     Text("경력 0")
-                        .font(.title)
+                        .font(.semibold24)
                     HStack {
                         Spacer()
                         
@@ -66,7 +67,7 @@ struct ProfileDetailsView: View {
                             print("경력 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.title3)
+                                .font(.regular20)
                                 .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
@@ -74,13 +75,13 @@ struct ProfileDetailsView: View {
                         Spacer()
                     }
                     Text("Tip 1개만 작성해도 채용될 확률이 올라요!")
-                        .font(.subheadline)
+                        .font(.regular14)
                         .padding(.bottom, 10)
                     Divider()
                     
                     
                     Text("나의 장점")
-                        .font(.title)
+                        .font(.semibold24)
                     HStack {
                         Spacer()
                         
@@ -88,7 +89,7 @@ struct ProfileDetailsView: View {
                             print("나의 장점 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.title3)
+                                .font(.regular20)
                                 .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)
@@ -100,10 +101,10 @@ struct ProfileDetailsView: View {
                     
                     
                     Text("추가 정보")
-                        .font(.title)
-                    
+                        .font(.semibold24)
+
                     Text("예) 보건증, 운전면허, 장기근무 가능 여부 등")
-                        .font(.subheadline)
+                        .font(.regular14)
                         .foregroundColor(.gray)
                         .padding(.bottom, 10)
                     HStack {
@@ -113,7 +114,7 @@ struct ProfileDetailsView: View {
                             print("추가 정보 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.title3)
+                                .font(.regular20)
                                 .frame(width: 340, height: 50)
                                 .background(.yellow)
                                 .cornerRadius(10)

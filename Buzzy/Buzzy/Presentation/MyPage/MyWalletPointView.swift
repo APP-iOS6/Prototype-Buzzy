@@ -33,7 +33,7 @@ struct MyWalletPointView: View {
                     .font(.headline)
                 Spacer()
                 Text("\(currentPoints) P")
-                    .font(.title)
+                    .font(.semibold24)
                     .fontWeight(.bold)
                     .foregroundColor(.yellow)
             }
@@ -55,15 +55,15 @@ struct MyWalletPointView: View {
             if selectedView == "포인트 내역" {
                 
                 Text("포인트 적립/사용 내역")
-                    .font(.headline)
+                    .font(.semibold20)
                 
                 List(transactionHistory, id: \.0) { transaction in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(transaction.0)
-                                .font(.subheadline)
+                                .font(.regular16)
                             Text(transaction.2)
-                                .font(.caption)
+                                .font(.regular14)
                                 .foregroundColor(.gray)
                         }
                         Spacer()
@@ -77,16 +77,17 @@ struct MyWalletPointView: View {
             } else if selectedView == "보상 교환" {
 
                 Text("보상 교환")
-                    .font(.headline)
+                    .font(.semibold20)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(rewards, id: \.0) { reward in
                             VStack {
                                 Text(reward.0)
-                                    .font(.subheadline)
+                                    .font(.semibold12)
+                                    .padding(.bottom, 1)
                                 Text("\(reward.1) P")
-                                    .font(.footnote)
+                                    .font(.regular14)
                                     .foregroundColor(.gray)
                                 Button(action: {
                                     
@@ -119,6 +120,7 @@ struct MyWalletPointView: View {
                     print("포인트 충전")
                 }) {
                     Text("포인트 충전")
+                        .font(.semibold16)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.green)
@@ -131,6 +133,7 @@ struct MyWalletPointView: View {
                     print("포인트 사용")
                 }) {
                     Text("포인트 사용")
+                        .font(.semibold16)
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.blue)
