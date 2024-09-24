@@ -86,10 +86,10 @@ public struct BoardView: View {
     @ViewBuilder
     public var tooltipOverlay: some View {
         if showingDifficultyExplanation {
-//            TooltipView(text: "업무 난이도를 평가해요\n★쉬움\n★★중간\n★★★어려움")
-//                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
-//                .transition(.opacity)
-//                .zIndex(2)
+            TooltipView(text: "업무 난이도를 평가해요\n★쉬움\n★★중간\n★★★어려움")
+                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
+                .transition(.opacity)
+                .zIndex(2)
         }
     }
     
