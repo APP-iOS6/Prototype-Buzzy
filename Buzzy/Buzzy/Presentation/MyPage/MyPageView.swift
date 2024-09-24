@@ -76,7 +76,7 @@ struct MyPageView: View {
                         Divider()
                         
                         NavigationLink {
-                            
+                            MyWalletPointView()
                         } label: {
                             Text("지갑 포인트")
                                 .font(.system(size: 20))

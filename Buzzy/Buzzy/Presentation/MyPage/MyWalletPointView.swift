@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WalletView: View {
+struct MyWalletPointView: View {
     
     @State private var currentPoints: Int = 15000
     @State private var selectedView: String = "포인트 내역"
@@ -145,5 +145,5 @@ struct WalletView: View {
 }
 
 #Preview {
-    WalletView()
+    MyWalletPointView()
 }
