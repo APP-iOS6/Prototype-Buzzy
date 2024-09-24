@@ -8,6 +8,9 @@
 import SwiftUI
 
 public struct BoardView: View {
+    @ObservedObject var postFoundation = PostFoundation()
+    @State private var selectedPost: BoardPost? = nil
+    @State private var isDetailViewActive = false
     @State private var selectedTab: Tab = .tips
     @State private var sortOrder: SortOrder = .recommended
     @State private var showingDifficultyExplanation = false
@@ -33,10 +36,9 @@ public struct BoardView: View {
     ]
     
     public var body: some View {
-        NavigationStack {  // BoardView에 NavigationStack을 적용
+        NavigationStack {
             ZStack(alignment: .bottom) {
-                VStack(spacing: 0) {
-                    // 여기서 WorkplaceDifficultyView를 호출할 때 selectedWorkplace와 navigateToDetail을 전달하지 않음
+                VStack(spacing: -11) {
                     WorkplaceDifficultyView(
                         workplaces: $workplaces,
                         showingDifficultyExplanation: $showingDifficultyExplanation,
@@ -58,16 +60,23 @@ public struct BoardView: View {
                     .padding()
 
                     ScrollView {
-                        LazyVStack(spacing: 15) {
-                            ForEach(0..<20) { _ in
-                                if selectedTab == .tips {
-                                    TipPostView()
-                                } else {
-                                    QAPostView()
+                        LazyVStack(spacing: 18) {
+                            ForEach(selectedTab == .tips ? postFoundation.posts : postFoundation.qaPosts) { post in
+                                Button(action: {
+                                    selectedPost = post
+                                    isDetailViewActive = true
+                                }) {
+                                    PostListItemView(post: post)
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.vertical)
+                    }
+                    .navigationDestination(isPresented: $isDetailViewActive) {
+                        if let selectedPost = selectedPost {
+                            PostDetailView(post: selectedPost, postFoundation: postFoundation)
+                        }
                     }
                 }
                 .background(Color.gray.opacity(0.1))
@@ -87,6 +96,53 @@ public struct BoardView: View {
     }
 
     public init() {}
+}
+
+struct PostListItemView: View {
+    let post: BoardPost
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(post.title)
+                    .font(.bold16)
+                    .lineLimit(1)
+                
+                HStack(spacing: 10) {
+                    Text("1시간 전")
+                        .font(.regular12)
+                        .foregroundColor(.gray)
+                    
+                    Text("조회 \(Int.random(in: 10...100))")
+                        .font(.regular12)
+                        .foregroundColor(.gray)
+                    
+                    Text("좋아요 \(post.likes)")
+                        .font(.regular12)
+                        .foregroundColor(.gray)
+                    
+                    Text("댓글 \(post.comments.count)")
+                        .font(.regular12)
+                        .foregroundColor(.gray)
+                }
+            }
+            
+            Spacer()
+            
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.gray.opacity(0.3))
+                .frame(width: 60, height: 60)
+                .overlay(
+                    Image(systemName: "photo")
+                        .foregroundColor(.white)
+                )
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+        .padding(.horizontal)
+    }
 }
 
 struct BoardView_Previews: PreviewProvider {
