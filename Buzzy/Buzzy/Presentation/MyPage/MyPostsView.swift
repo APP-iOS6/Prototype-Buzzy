@@ -61,24 +61,26 @@ struct MyPostsView: View {
                 
                 ForEach(posts) { post in
                     Text(post.title)
-                        .font(.headline)
+                        .font(.semibold20)
                     
                     Text(post.summary)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .font(.subheadline)
+                        .font(.regular16)
                         .foregroundColor(.gray)
                     
                     HStack {
                         Text(post.date)
-                            .font(.caption)
+                            .font(.regular12)
                             .foregroundColor(.gray)
                         
                         Spacer()
                         Text("댓글 \(post.comments)")
+                            
                         
                         Text("평점: \(post.star, specifier: "%0.1f")")
                     }
+                    .font(.regular16)
                     Divider()
                         .padding(.bottom, 20)
                     

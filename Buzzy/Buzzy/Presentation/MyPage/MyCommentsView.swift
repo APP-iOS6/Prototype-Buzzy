@@ -34,12 +34,12 @@ struct MyCommentsView: View {
                 
                 ForEach(comments) { com in
                     Text(com.title)
-                        .font(.headline)
+                        .font(.semibold20)
                     
                     Text(com.comment)
+                        .font(.regular16)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .font(.body)
                         
                         Text(com.date)
                             .font(.caption)
