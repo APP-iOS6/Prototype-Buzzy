@@ -128,6 +128,7 @@ struct MyPageView: View {
             }
             Spacer()
         }
+        .navigationTitle("마이 페이지")
         .padding(.horizontal, 24.0)
     }
 }
