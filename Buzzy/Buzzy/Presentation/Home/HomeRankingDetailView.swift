@@ -4,44 +4,45 @@
 //
 //  Created by wonhoKim on 9/24/24.
 //
+
 import SwiftUI
 
 struct HomeRankingDetailView: View {
-    @ObservedObject var viewModel: HomeRankingViewModel // ViewModel 수정
-
+    @StateObject private var viewModel = HomeRankingViewModel()
+    @State private var selectedOption: String = "조회수 급상승 랭킹"
     var body: some View {
-        List {
-            ForEach(Array(viewModel.sortedRanks.enumerated()), id: \.element.id) { index, rank in
-                HStack {
-                    Text("\(index + 1)") // 순위 표시
-                        .bold()
-                        .foregroundColor(.blue)
-                        .padding()
-                    Image(systemName: rank.logo)
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(.yellow)
-                    VStack(alignment: .leading) {
-                        Text(rank.name)
-                            .font(.system(size: 16, weight: .bold))
-                        HStack(spacing: 0) {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                            Text(rank.rating)
-                            Text("(\(rank.review))")
-                        }
-                    }
+        VStack() {
+            Menu {
+                Button("조회수 급상승") {
+                    selectedOption = "조회수 급상승 랭킹"
+                    viewModel.sortRanks(by: .byViews)
                 }
-                .background(Color.white)
-                .cornerRadius(5)
+                Button("평점순") {
+                    selectedOption = "평점순 랭킹"
+                    viewModel.sortRanks(by: .byRating)
+                }
+                Button("리뷰순") {
+                    selectedOption = "리뷰순 랭킹"
+                    viewModel.sortRanks(by:.byViews)
+                }
+            } label: {
+                HStack {
+                    Text(selectedOption)
+                        .font(.bold24)
+                    Image(systemName: "chevron.down")
+                        .font(.regular24)
+                }
             }
+            .foregroundColor(.black)
         }
-        .listStyle(GroupedListStyle())
-        .scrollContentBackground(.hidden)
+        
+        HomeRankingListView(viewModel: viewModel)
         
     }
+    
 }
 
+
 #Preview {
-    HomeRankingDetailView(viewModel: HomeRankingViewModel()) // 데이터 전달
+    HomeRankingDetailView()
 }
