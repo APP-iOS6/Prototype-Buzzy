@@ -8,22 +8,52 @@
 import SwiftUI
 
 struct HomeRankingView: View {
+    @StateObject private var viewModel = HomeRankingViewModel()
+
     var body: some View {
-        //홈화면에 들어갈 랭킹페이지 및 상세랭킹페이지 만들기
         VStack {
-            HStack{
-                //padding()
-                Text("알바 랭킹").font(.subheadline)
-                    
+            HStack {
+                Text("알바 랭킹").font(.bold24)
+                
                 Spacer()
                 
                 Button {
-                    //랭킹 상세 페이지 뷰 와야함
+                    // 여기에 상세 페이지로 전환하는 코드 추가
+                   
                 } label: {
-                    Image(systemName: "greaterthan").foregroundStyle(Color.black)
+                    Image(systemName: "greaterthan")
+                        .foregroundStyle(Color.black)
+                        .font(.regular24)
                 }
+            }
+            .padding()
+            
+            HStack {
+                Button("조회수 급상승") {
+                    print("조회수 버튼")
+                    viewModel.sortRanks(by: .byViews) // 조회수로 정렬해야하는데 리뷰 많은 순으로 정렬되어있음현재
+                }
+                .padding(5)
+                .buttonStyle(PlainButtonStyle())
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                
+                Button("평점순") {
+                    viewModel.sortRanks(by: .byRating) // 평점으로정렬
+                }
+                .padding(5)
+                .buttonStyle(PlainButtonStyle())
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+                
+                Button("리뷰순") {
+                    viewModel.sortRanks(by: .default) // 기본 정렬 배열에 박혀있는 순서로 되어있음현재
+                }
+                .padding(5)
+                .buttonStyle(PlainButtonStyle())
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray, lineWidth: 1))
+            }
+            .padding()
 
-            }.padding()
+            HomeRankingDetailView(viewModel: viewModel) // ViewModel 넘겨주기
         }
     }
 }
@@ -31,3 +61,4 @@ struct HomeRankingView: View {
 #Preview {
     HomeRankingView()
 }
+
