@@ -61,9 +61,9 @@ public struct BoardView: View {
                     LazyVStack(spacing: 15) {
                         ForEach(0..<20) { _ in
                             if selectedTab == .tips {
-//                                TipPostView()
+                                TipPostView()
                             } else {
-//                                QAPostView()
+                                QAPostView()
                             }
                         }
                     }
