@@ -37,9 +37,11 @@ struct HomeRankingDetailView: View {
             }
         }
         .listStyle(GroupedListStyle())
+        .scrollContentBackground(.hidden)
+        
     }
 }
 
 #Preview {
-    HomeRankingDetailView(viewModel: HomeRankingViewModel()) // 초기 데이터 전달
+    HomeRankingDetailView(viewModel: HomeRankingViewModel()) // 데이터 전달
 }
