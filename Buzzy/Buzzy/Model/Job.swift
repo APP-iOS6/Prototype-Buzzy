@@ -17,11 +17,11 @@ enum PartTimeKeyWord: String {
 struct Announcement {
     let title: String
     let company: String
-    let image: String
+    let imageName: String
     
     static let annoucementData = [
-        Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", image: "company6"),
-        Announcement(title: "사옥 입장관리", company: "JTBC", image: "company5"),
+        Announcement(title: "음료 제조 및 매장관리", company: "투썸 플레이스", imageName: "company6"),
+        Announcement(title: "사옥 입장관리", company: "JTBC", imageName: "company5"),
     ]
     
 }
