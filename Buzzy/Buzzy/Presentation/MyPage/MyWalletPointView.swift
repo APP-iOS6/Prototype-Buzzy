@@ -118,6 +118,7 @@ struct MyWalletPointView: View {
             HStack {
                 Button(action: {
                     print("포인트 충전")
+                    currentPoints += 1000
                 }) {
                     Text("포인트 충전")
                         .font(.semibold16)
