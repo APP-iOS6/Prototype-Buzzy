@@ -13,7 +13,7 @@ public struct WorkplaceDifficultyView: View {
     @Binding var tooltipPosition: CGPoint
     @State private var selectedWorkplace: (imageName: String, title: String, subtitle: String)?
     @State private var navigateToDetail = false
-    @State private var selectedStarCount: Int = 0  // 선택된 별점 저장
+    @State private var selectedStarCount: Int = 0
     
     public var body: some View {
         NavigationStack {
@@ -22,7 +22,7 @@ public struct WorkplaceDifficultyView: View {
                     Text("업무 난이도")
                     TooltipButton(showTooltip: $showingDifficultyExplanation, updatePosition: { tooltipPosition = $0 })
                 }
-                .font(.semibold20)
+                .font(.semibold16)
                 .padding(.leading)
                 
                 ScrollView(.horizontal, showsIndicators: false) {

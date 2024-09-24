@@ -31,7 +31,7 @@ public struct WorkplaceCard: View {
     
     public var body: some View {
         Button(action: {
-            onCardSelected(starCount)  // 카드가 눌리면 별점을 전달
+            onCardSelected(starCount)
         }) {
             VStack(spacing: 4) {
                 if let uiImage = UIImage(named: imageName) {
@@ -72,7 +72,7 @@ public struct WorkplaceCard: View {
             .cornerRadius(10)
             .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle())  // 기본 버튼 스타일로 변경
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

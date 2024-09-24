@@ -69,8 +69,7 @@ struct WorkplaceDifficultyDetailView: View {
                 .font(.bold24)
                 .fontWeight(.bold)
             Text(workplace.subtitle)
-                .font(.regular16)
-                .fontWeight(.bold)
+                .font(.semibold16)
                 .foregroundColor(.secondary)
         }
         .padding(.horizontal)
@@ -104,12 +103,12 @@ struct WorkplaceDifficultyDetailView: View {
                 
                 ForEach(hourlyWorkload.indices, id: \.self) { index in
                     Text(hourlyWorkload[index].emoji)
-                        .font(.system(size: 20))
+                        .font(.bold20)
                         .offset(self.emojiOffset(for: index))
                 }
                 
                 Text("시간 별\n업무 강도")
-                    .font(.headline)
+                    .font(.bold16)
                     .foregroundStyle(.gray)
                     .multilineTextAlignment(.center)
             }
