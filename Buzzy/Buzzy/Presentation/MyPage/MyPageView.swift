@@ -23,20 +23,27 @@ struct MyPageView: View {
                             .overlay(
                                 Circle().stroke(Color.black, lineWidth: 1))
                         
-                        Text("열정알바")
-                            .font(.title)
-                            .fontWeight(.bold)
+                        VStack(alignment: .leading) {
+                            Text("열정알바")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            
+                            Button {
+                                print("프로필 수정")
+                            } label: {
+                                Text("프로필 수정")
+                            }
+
+                        }
                     }
                     .padding(.top, 32)
-                    
-                    
                     .padding(.bottom, 20)
                     
                     HStack {
                         Spacer()
                         
                         Button {
-                            
+                            print("지원서 관리")
                         } label: {
                             Text("지원서 관리")
                                 .font(.headline)
@@ -56,6 +63,7 @@ struct MyPageView: View {
                         } label: {
                             Text("내가 작성한 글")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -64,6 +72,16 @@ struct MyPageView: View {
                         } label: {
                             Text("내가 작성한 댓글")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
+                        }
+                        Divider()
+                        
+                        NavigationLink {
+                            
+                        } label: {
+                            Text("지갑 포인트")
+                                .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -72,6 +90,7 @@ struct MyPageView: View {
                         } label: {
                             Text("지역 설정")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -80,6 +99,7 @@ struct MyPageView: View {
                         } label: {
                             Text("알림설정")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -89,6 +109,7 @@ struct MyPageView: View {
                         } label: {
                             Text("고객센터")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -97,6 +118,7 @@ struct MyPageView: View {
                         } label: {
                             Text("환경설정")
                                 .font(.system(size: 20))
+                                .foregroundColor(.black)
                         }
                         Divider()
                     }
