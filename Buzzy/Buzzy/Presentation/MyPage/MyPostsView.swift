@@ -55,6 +55,10 @@ struct MyPostsView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
+                TextField("검색어를 입력하세요", text: .constant(""))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
                 ForEach(posts) { post in
                     Text(post.title)
                         .font(.headline)
@@ -81,9 +85,9 @@ struct MyPostsView: View {
                 }
             }
             .navigationTitle("내가 작성한 글")
-            .padding(.horizontal, 24.0)
+            .padding(.horizontal, 20.0)
         }
-        .padding(.top, 50)
+        .padding(.top, 10)
     }
 }
 
