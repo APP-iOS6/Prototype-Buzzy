@@ -11,37 +11,52 @@ public struct WorkplaceDifficultyView: View {
     @Binding var workplaces: [(imageName: String, title: String, subtitle: String)]
     @Binding var showingDifficultyExplanation: Bool
     @Binding var tooltipPosition: CGPoint
+    @State private var selectedWorkplace: (imageName: String, title: String, subtitle: String)?
+    @State private var navigateToDetail = false
+    @State private var selectedStarCount: Int = 0  // 선택된 별점 저장
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Text("업무 난이도") // .font(.bold24)
-                TooltipButton(showTooltip: $showingDifficultyExplanation, updatePosition: { tooltipPosition = $0 })
-            }
-            .font(.semibold20)
-            .padding(.leading)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    ForEach(workplaces.indices, id: \.self) { index in
-                        WorkplaceCard(
-                            imageName: workplaces[index].imageName,  // 이미지 적용
-                            title: workplaces[index].title,          // 제목 적용
-                            description: workplaces[index].subtitle, // 부제목 적용
-                            onTitleChange: { newTitle in
-                                workplaces[index].title = newTitle
-                            },
-                            onSubtitleChange: { newSubtitle in
-                                workplaces[index].subtitle = newSubtitle
-                            }
-                        )
-                    }
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text("업무 난이도")
+                    TooltipButton(showTooltip: $showingDifficultyExplanation, updatePosition: { tooltipPosition = $0 })
                 }
-                .font(.semibold16)
-                .padding(.horizontal)
+                .font(.semibold20)
+                .padding(.leading)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(workplaces.indices, id: \.self) { index in
+                            WorkplaceCard(
+                                imageName: workplaces[index].imageName,
+                                title: workplaces[index].title,
+                                description: workplaces[index].subtitle,
+                                onTitleChange: { newTitle in
+                                    workplaces[index].title = newTitle
+                                },
+                                onSubtitleChange: { newSubtitle in
+                                    workplaces[index].subtitle = newSubtitle
+                                },
+                                onCardSelected: { stars in
+                                    selectedStarCount = stars  // 별점 저장
+                                    selectedWorkplace = workplaces[index]  // 선택한 직장 저장
+                                    navigateToDetail = true  // 화면 전환
+                                }
+                            )
+                        }
+                    }
+                    .font(.semibold16)
+                    .padding(.horizontal)
+                }
+            }
+            .padding(.vertical)
+            .navigationDestination(isPresented: $navigateToDetail) {
+                if let workplace = selectedWorkplace {
+                    WorkplaceDifficultyDetailView(workplace: workplace, rating: selectedStarCount)  // 별점 전달
+                }
             }
         }
-        .padding(.vertical)
     }
 }
 
