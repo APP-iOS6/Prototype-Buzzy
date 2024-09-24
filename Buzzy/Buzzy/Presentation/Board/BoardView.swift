@@ -37,11 +37,11 @@ public struct BoardView: View {
     public var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-//                WorkplaceDifficultyView(
-//                    workplaces: $workplaces,
-//                    showingDifficultyExplanation: $showingDifficultyExplanation,
-//                    tooltipPosition: $tooltipPosition
-//                )
+                WorkplaceDifficultyView(
+                    workplaces: $workplaces,
+                    showingDifficultyExplanation: $showingDifficultyExplanation,
+                    tooltipPosition: $tooltipPosition
+                )
 
                 HStack {
                     HStack(spacing: 10) {
