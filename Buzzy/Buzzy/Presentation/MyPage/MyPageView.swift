@@ -29,12 +29,9 @@ struct MyPageView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                             
-                            Button {
-                                print("프로필 수정")
-                            } label: {
-                                Text("프로필 수정")
-                            }
-
+                            Text("성동구")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
                     }
                     .padding(.top, 32)
@@ -61,7 +58,7 @@ struct MyPageView: View {
                     VStack(alignment: .leading, spacing: 22) {
                         
                         NavigationLink {
-                            
+                            MyPostsView()
                         } label: {
                             Text("내가 작성한 글")
                                 .font(.system(size: 20))

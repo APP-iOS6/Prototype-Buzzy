@@ -47,7 +47,7 @@ struct ProfileDetailsView: View {
                                 .font(.title3)
                                 .frame(width: 340, height: 50)
                                 .background(.yellow)
-                                .cornerRadius(10)                            
+                                .cornerRadius(10)
                         }
                         Spacer()
                     }
@@ -79,7 +79,7 @@ struct ProfileDetailsView: View {
                     Divider()
                     
                     
-                   Text("나의 장점")
+                    Text("나의 장점")
                         .font(.title)
                     HStack {
                         Spacer()
