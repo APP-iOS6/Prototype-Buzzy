@@ -27,6 +27,8 @@ struct LocationSettingsView: View {
                             .stroke(.secondary, lineWidth: 5)
                             .padding(5)
                         Image(systemName: "mappin")
+                            .resizable()
+                            .frame(width: 15, height: 35)
                             .padding(5)
                     }
                 }

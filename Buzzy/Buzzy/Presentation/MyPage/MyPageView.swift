@@ -100,15 +100,7 @@ struct MyPageView: View {
                         
                         
                         NavigationLink {
-                            
-                        } label: {
-                            Text("고객센터")
-                                .font(.regular20)                                .foregroundColor(.black)
-                        }
-                        Divider()
-                        
-                        NavigationLink {
-                            
+                            SettingsView()
                         } label: {
                             Text("환경설정")
                                 .font(.regular20)                                .foregroundColor(.black)
