@@ -57,7 +57,7 @@ struct MyPageView: View {
                             Divider()
                                 .frame(width: 1, height: 30)
                             
-                        
+                        NavigationLink(destination: MyWalletPointView()) {
                             VStack(alignment: .center) {
                                 Text("포인트")
                                     .font(.system(size: 16, weight: .regular))
@@ -67,15 +67,15 @@ struct MyPageView: View {
                             .foregroundColor(.black)
                             .frame(maxWidth: .infinity)
                             .padding()
-                        
+                        }
                             Divider()
                                 .frame(width: 1, height: 30)
                             
-                        NavigationLink(destination: MyWalletPointView()) {
+                        NavigationLink(destination: MyCouponsView()) {
                             VStack(alignment: .center) {
                                 Text("쿠폰")
                                     .font(.system(size: 16, weight: .regular))
-                                Text("0")
+                                Text("1")
                                     .font(.system(size: 16, weight: .semibold))
                             }
                             .foregroundColor(.black)
