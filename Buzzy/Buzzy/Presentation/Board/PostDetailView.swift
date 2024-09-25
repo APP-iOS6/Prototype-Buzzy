@@ -25,7 +25,7 @@ public struct PostDetailView: View {
                     postFoundation.likePost(postID: post.id)
                 }) {
                     HStack {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "hand.thumbsup.fill")
                             .foregroundColor(Color("BuzzyPink"))
                         Text("좋아요 \(post.likes)")
                             .foregroundColor(Color("BuzzyPink"))
@@ -39,9 +39,9 @@ public struct PostDetailView: View {
                 }) {
                     HStack {
                         Image(systemName: post.isScrapped ? "bookmark.fill" : "bookmark")
-                            .foregroundColor(Color("BuzzyYellow"))
+                            .foregroundColor(Color.accentColor)
                         Text(post.isScrapped ? "스크랩 완료" : "스크랩")
-                            .foregroundColor(Color("BuzzyYellow"))
+                            .foregroundColor(Color.accentColor)
                     }
                 }
             }
