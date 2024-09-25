@@ -46,7 +46,6 @@ struct MyPageView: View {
                         } label: {
                             Text("지원서 관리")
                                 .font(.regular24)
-                            
                                 .foregroundColor(.white)
                         }
                         .frame(width: 340, height: 50)
@@ -72,7 +71,8 @@ struct MyPageView: View {
                             MyCommentsView()
                         } label: {
                             Text("내가 작성한 댓글")
-                                .font(.regular20)                      .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -80,7 +80,8 @@ struct MyPageView: View {
                             MyWalletPointView()
                         } label: {
                             Text("지갑 포인트")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -88,7 +89,8 @@ struct MyPageView: View {
                             LocationSettingsView()
                         } label: {
                             Text("지역 설정")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -97,7 +99,8 @@ struct MyPageView: View {
                             SettingsView()
                         } label: {
                             Text("환경설정")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                     }
