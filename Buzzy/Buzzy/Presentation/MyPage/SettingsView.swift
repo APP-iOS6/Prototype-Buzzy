@@ -33,23 +33,23 @@ struct SettingsView: View {
     var body: some View {
         
         VStack(alignment: .center, spacing: 20) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                TextField("검색어를 입력하세요", text: $searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                if !searchText.isEmpty {
-                    Button(action: {
-                        searchText = ""
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.gray)
-                        
-                    }
-                }
-                
-            }
-            .padding(3)
+//            HStack {
+//                Image(systemName: "magnifyingglass")
+//                TextField("검색어를 입력하세요", text: $searchText)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                
+//                if !searchText.isEmpty {
+//                    Button(action: {
+//                        searchText = ""
+//                    }) {
+//                        Image(systemName: "xmark.circle.fill")
+//                            .foregroundStyle(.gray)
+//                        
+//                    }
+//                }
+//                
+//            }
+//            .padding(3)
             
             ForEach(filteredMenuItems, id: \.self) { item in
                 if item == "로그아웃" {
@@ -90,9 +90,10 @@ struct SettingsView: View {
             }
             Spacer()
             .navigationTitle("환경설정")
-            .padding(.horizontal)
-            .padding(.top, 10)
+            
         }
+        .padding(.horizontal)
+        .padding(.top, 40)
     }
     
 }

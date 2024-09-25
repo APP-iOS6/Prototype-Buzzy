@@ -47,6 +47,7 @@ struct MyPageView: View {
                             Text("지원서 관리")
                                 .font(.regular24)
                             
+                                .foregroundColor(.white)
                         }
                         .frame(width: 340, height: 50)
                         .background(.yellow)
