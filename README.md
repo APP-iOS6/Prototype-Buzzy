@@ -2,7 +2,7 @@
 
 
 
-# **About Buzzy**
+# **About Buzzy**
 
 
 # **✨ 주요 기능**
