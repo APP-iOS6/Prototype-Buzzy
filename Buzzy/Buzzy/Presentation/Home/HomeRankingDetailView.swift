@@ -32,6 +32,15 @@ struct HomeRankingDetailView: View {
                         selectedOption = "리뷰순 랭킹"
                         viewModel.sortRanks(by: .byViews)
                     }
+                    Button("난이도 높은순") {
+                        selectedOption = "난이도 높은순"
+                        viewModel.sortRanks(by: .byDifficulty)
+                    }
+                    Button("난이도 낮은순") {
+                        selectedOption = "난이도 낮은순"
+                        viewModel.sortRanks(by: .byEasy)
+                    }
+                    
                 } label: {
                     HStack {
                         Text(selectedOption)

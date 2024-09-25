@@ -13,5 +13,6 @@ struct Rank: Identifiable {
     var logo: String
     var rating: String
     var review: Int
+    var difficultylevel: String
 }
 
