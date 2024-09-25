@@ -23,6 +23,7 @@ public struct BoardView: View {
         case latest = "인기순"
     }
     
+    
     public var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
