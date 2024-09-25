@@ -13,8 +13,6 @@ public struct BoardView: View {
     @State private var isDetailViewActive = false
     @State private var selectedTab: Tab = .tips
     @State private var sortOrder: SortOrder = .recommended
-    @State private var showingDifficultyExplanation = false
-    @State private var tooltipPosition: CGPoint = .zero
     
     public enum Tab {
         case tips, qa
@@ -25,26 +23,11 @@ public struct BoardView: View {
         case latest = "최신순"
     }
     
-    @State private var workplaces: [(imageName: String, title: String, subtitle: String)] = [
-        ("Uniqlo", "유니클로", "강남점"),
-        ("Emart", "이마트", "물류센터"),
-        ("Starbucks", "스타벅스", "서초점"),
-        ("Cu", "CU", "마곡엠코점"),
-        ("HanamPig", "하남돼지집", "강남점"),
-        ("HongkongBanjum", "홍콩반점", "서초점"),
-        ("Coupang", "쿠팡", "물류센터"),
-    ]
-    
     public var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
                 VStack(spacing: -11) {
-                    WorkplaceDifficultyView(
-                        workplaces: $workplaces,
-                        showingDifficultyExplanation: $showingDifficultyExplanation,
-                        tooltipPosition: $tooltipPosition
-                    )
-
+                    
                     HStack {
                         HStack(spacing: 10) {
                             TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
@@ -79,22 +62,12 @@ public struct BoardView: View {
                         }
                     }
                 }
-                .background(Color.gray.opacity(0.1))
-                .overlay(tooltipOverlay)
+                //.background(Color.gray.opacity(0.1))
             }
         }
     }
 
-    @ViewBuilder
-    public var tooltipOverlay: some View {
-        if showingDifficultyExplanation {
-            TooltipView(text: "업무 난이도를 평가해요\n★1개~2개 : easy\n★2개~3개 : normal\n★4개~5개 : hard")
-                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
-                .transition(.opacity)
-                .zIndex(2)
-        }
-    }
-
+    
     public init() {}
 }
 

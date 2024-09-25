@@ -27,7 +27,6 @@ struct CompanyListView: View {
         }
         .navigationTitle("시급이 높아요!")
         .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 
@@ -44,7 +43,7 @@ struct CompanyContentView: View {
             Image("\(announcement.imageName)")
                 .resizable()
                 .frame(maxWidth: .infinity)
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: .fill)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
             Text("\(announcement.title)")
@@ -58,7 +57,7 @@ struct CompanyContentView: View {
                 .font(.regular14)
             
         }
-        .padding() // 전체 VStack에 패딩 추가
+        .padding(5) // 전체 VStack에 패딩 추가
     }
     
 }
