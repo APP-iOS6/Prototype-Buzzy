@@ -127,6 +127,7 @@ struct PostListItemView: View {
                 }
             }
             
+            
             Spacer()
             
             RoundedRectangle(cornerRadius: 10)
