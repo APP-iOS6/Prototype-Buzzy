@@ -99,7 +99,7 @@ struct MyWalletPointView: View {
                                         .foregroundColor(.white)
                                         .padding(.vertical, 8)
                                         .padding(.horizontal, 24)
-                                        .background(.blue)
+                                        .background(currentPoints >= reward.1 ? Color.blue : Color.gray)
                                         .cornerRadius(10)
                                 }
                                 .disabled(currentPoints < reward.1)
