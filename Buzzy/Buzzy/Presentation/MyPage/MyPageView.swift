@@ -37,26 +37,72 @@ struct MyPageView: View {
                     .padding(.top, 32)
                     .padding(.bottom, 18)
                     
-                    HStack {
-                        Spacer()
+                    
+                    HStack(alignment: .center) {
+                            
+                            Spacer()
+                        
+                            VStack(alignment: .center) {
+                                Text("지원 완료")
+                                    .font(.system(size: 16, weight: .regular))
+                                 
+                                Text("1")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        
+                            
+                            Divider()
+                                .frame(width: 1, height: 30)
+                            
+                        
+                            VStack(alignment: .center) {
+                                Text("포인트")
+                                    .font(.system(size: 16, weight: .regular))
+                                Text("15,000 P")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        
+                            Divider()
+                                .frame(width: 1, height: 30)
+                            
+                        NavigationLink(destination: MyWalletPointView()) {
+                            VStack(alignment: .center) {
+                                Text("쿠폰")
+                                    .font(.system(size: 16, weight: .regular))
+                                Text("0")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        }
+                            
+                            Spacer()
+                        }
+                        .frame(width: 370, height: 60) // 전체 너비는 넓음
+                        .background(Color.yellow)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+                    .padding(.bottom, 25)
+                    
+                    VStack(alignment: .leading, spacing: 22) {
                         
                         
                         NavigationLink {
                             ProfileDetailsView()
                         } label: {
-                            Text("지원서 관리")
-                                .font(.regular24)
-                                .foregroundColor(.white)
+                            Text("이력서 관리")
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
-                        .frame(width: 340, height: 50)
-                        .background(.yellow)
-                        .cornerRadius(10)
+                        Divider()
                         
-                        Spacer()
-                    }
-                    .padding(.bottom, 25)
-                    
-                    VStack(alignment: .leading, spacing: 22) {
                         
                         NavigationLink {
                             MyPostsView()

@@ -29,10 +29,12 @@ struct MyPostDetailView: View {
                             print("공감버튼 누름")
                     }) {
                         Image(systemName: "heart")
-                        Text("공감 \(post.comments)")
+                        Text("공감 0")
                     }
+                    
                     Spacer()
                     
+                    Text("댓글: \(post.comments)")
                     Text("평점: \(post.star, specifier: "%.1f")")
                         
                 }
