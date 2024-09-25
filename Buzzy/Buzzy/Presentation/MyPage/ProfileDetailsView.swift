@@ -20,24 +20,37 @@ struct ProfileDetailsView: View {
                 
                 HStack(spacing: 16) {
                     
-                    if let selectedImage = selectedImage {
-                        Image(uiImage: selectedImage)
+                    ZStack(alignment: .bottomTrailing) {
+                        
+                        if let selectedImage = selectedImage {
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 85, height: 85)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                                .padding(.leading, 5)
+                        } else {
+                            Image("1")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 90, height: 90)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                                .padding(.leading, 5)
+                        }
+                        
+                        // Camera icon
+                        Image(systemName: "camera.circle.fill")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 80)
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(.white) // Change color as needed
+                            .background(Color.black.opacity(0.7))
                             .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.black, lineWidth: 1))
-                            .padding(.leading, 5)
-                    } else {
-                        Image("1")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.black, lineWidth: 1))
-                            .padding(.leading, 5)
+                            .padding(5) // Adjust padding to position icon
+                    }
+                    .onTapGesture {
+                        showImagePicker = true
                     }
                     
                     VStack(alignment: .leading) {
@@ -46,9 +59,6 @@ struct ProfileDetailsView: View {
                         Text("남성·53세·성동구")
                             .font(.regular16)
                     }
-                }
-                .onTapGesture {
-                    showImagePicker = true
                 }
                 
                 

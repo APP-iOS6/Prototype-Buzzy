@@ -22,7 +22,7 @@ struct MyCouponsView: View {
                     
                 }) {
                     Text("쿠폰 등록")
-                        .foregroundColor(.red)
+                        .foregroundColor(.accent)
                 }
                 Spacer()
                 Button(action: {
@@ -70,24 +70,28 @@ struct CouponCardView: View {
             Text(coupon.title)
                 .font(.headline)
                 .padding(.bottom, 2)
+            
             Text(coupon.description)
                 .font(.subheadline)
                 .foregroundColor(.gray)
+            
             Text(coupon.condition)
                 .font(.subheadline)
                 .foregroundColor(.gray)
+            
             HStack {
                 Text(coupon.dDay)
                     .font(.caption)
                     .foregroundColor(.red)
+                
                 Spacer()
                 Text(coupon.expiryDate)
                     .font(.caption)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.red)
             }
         }
         .padding()
-        .background(Color(.systemGray6))
+        .background(.buzzySky)
         .cornerRadius(8)
     }
 }

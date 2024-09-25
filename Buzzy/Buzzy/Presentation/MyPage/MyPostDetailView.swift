@@ -29,7 +29,7 @@ struct MyPostDetailView: View {
                             print("공감버튼 누름")
                     }) {
                         Image(systemName: "heart")
-                        Text("공감 0")
+                        Text("좋아요 0")
                     }
                     
                     Spacer()
@@ -80,6 +80,7 @@ struct MyPostDetailView: View {
             .navigationTitle("글 상세보기")
             .padding(.top, 15)
         }
+        .padding()
     }
 }
 
