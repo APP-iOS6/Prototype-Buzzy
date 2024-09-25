@@ -97,7 +97,7 @@ struct MyPageView: View {
                         HStack {
                             Spacer()
                             VStack {
-                                Text("관심")
+                                Text("좋아요")
                                     .font(.semibold16)
                                     .foregroundColor(.white)
                                 Text("3")
@@ -122,6 +122,7 @@ struct MyPageView: View {
                         .frame(height: 50)
                         .padding(.bottom, 5)
                     }
+                    .frame(width: .infinity)
                     .background(.accent)
                     .cornerRadius(15)
                     
