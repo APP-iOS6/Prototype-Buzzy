@@ -43,16 +43,19 @@ struct CompanyContentView: View {
             Image("\(announcement.imageName)")
                 .resizable()
                 .frame(maxWidth: .infinity)
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(radius: 3)
             
             Text("\(announcement.title)")
                 .frame(maxWidth: .infinity, alignment: .leading) // 텍스트 왼쪽 정렬
+                .padding(.leading, 5)
                 .lineLimit(2)
                 .font(.semibold16)
             
             Text("\(announcement.company)")
                 .foregroundColor(Color.gray)
+                .padding(.leading, 5)
                 .frame(maxWidth: .infinity, alignment: .leading) // 텍스트 왼쪽 정렬
                 .font(.regular14)
             

@@ -40,7 +40,12 @@ struct HomeView: View {
                                     tooltipPosition: $tooltipPosition
                                 )
                                 .overlay(tooltipOverlay)
-                                HomeScrollView()
+                                ForEach(PartTimeKeyWord.allCases, id: \.self) { keyword in
+                                    HomeScrollView(keyword: keyword)
+                                        .frame(height: proxy.size.width * 0.6)
+                                        .padding(.bottom)
+                                        
+                                }
                                 HomeRankingView()
                             }
                         }
@@ -63,14 +68,15 @@ struct HomeView: View {
 }
 
 struct HomeScrollView: View {
-    private var keyword: PartTimeKeyWord = .GoodMood
+    private var keyword: PartTimeKeyWord
+    init(keyword: PartTimeKeyWord) {
+        self.keyword = keyword
+    }
     var body: some View {
-        ScrollView {
             VStack(alignment: .leading) {
-                ForEach(PartTimeKeyWord.allCases, id: \.self) { keyword in
                     HStack {
                         Text("\(keyword.rawValue)")
-                            .font(.semibold20)
+                            .font(.semibold16)
                             .padding()
                         Spacer()
                         NavigationLink(destination: CompanyListView()) {
@@ -83,25 +89,25 @@ struct HomeScrollView: View {
                             .foregroundColor(.gray)
                         }
                     }
-                    .padding(.bottom, -25)
+                    .padding(.bottom, -15)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {
                             ForEach(keyword.annoucementData) { data in
                                 NavigationLink(destination: DetailView(announcement: data)) {
                                     CompanyContentView(announcement: data)
-                                        .frame(maxWidth: .infinity)
+                                       // .frame(maxWidth: .infinity)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
-                    .frame(height: 200)
-                    
-                }
+                 //   .frame(height: 250)
+ 
+                
             }
         }
-    }
+    
     
 }
 
@@ -112,5 +118,5 @@ struct HomeScrollView: View {
 }
 
 #Preview("scroll") {
-    HomeScrollView()
+    HomeScrollView(keyword: .GoodMood)
 }
