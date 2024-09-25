@@ -8,10 +8,12 @@
 import Foundation
 
 enum PartTimeKeyWord: String,CaseIterable {
-    case GoodMood = "분위기가 좋아요"
-    case region = "서울에서 많이 봤어요"
+   
+    case region = "강남에서 많이 봤어요"
     case highSalary = "시급이 높아요"
     case highRating = "평점이 높아요"
+    case GoodMood = "분위기가 좋아요"
+
     
     var annoucementData: [Announcement] {
         switch self {

@@ -10,9 +10,25 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack {
-            VStack {
-                HomeScrollView()
-                Spacer()
+            ZStack {
+                VStack {
+                    HStack {
+                        Text("Buzzy")
+                            .font(.semibold20)
+                            .padding(.top)
+                            .foregroundStyle(.orange)
+                        //Spacer()
+                        
+                    }
+                    ScrollView {
+                        VStack{
+                            HomeScrollView()
+                            HomeRankingView()
+                            // Spacer()
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -31,7 +47,7 @@ struct HomeScrollView: View {
                         Spacer()
                         NavigationLink(destination: CompanyListView()) {
                             HStack {
-                                Text("더 보기")
+                                Text("더보기")
                                     .font(.subheadline)
                                 Image(systemName: "chevron.right")
                             }
@@ -39,6 +55,7 @@ struct HomeScrollView: View {
                             .foregroundColor(.gray)
                         }
                     }
+                    .padding(.bottom, -25)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack {
