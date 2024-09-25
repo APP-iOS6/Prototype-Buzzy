@@ -37,7 +37,7 @@ struct LocationSettingsView: View {
                 Annotation("Parking", coordinate: .parking) {
                     VStack {
                         RoundedRectangle(cornerRadius: 5)
-                            .fill(.background)
+                            .fill(.white)
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(.secondary, lineWidth: 5)
                             .padding(5)

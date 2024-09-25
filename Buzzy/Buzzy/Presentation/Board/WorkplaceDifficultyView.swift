@@ -24,6 +24,7 @@ public struct WorkplaceDifficultyView: View {
                 }
                 .font(.semibold16)
                 .padding(.leading)
+                .padding(.bottom, -15)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
@@ -47,7 +48,7 @@ public struct WorkplaceDifficultyView: View {
                         }
                     }
                     .font(.semibold16)
-                    .padding(.horizontal)
+                    .padding()
                 }
             }
             .padding(.vertical)

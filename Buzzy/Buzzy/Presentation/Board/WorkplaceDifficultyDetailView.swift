@@ -50,9 +50,9 @@ struct WorkplaceDifficultyDetailView: View {
                     Spacer()
                 }
             }
-            backButton
+           // backButton
         }
-        .navigationBarBackButtonHidden(true)  // 기본 네비게이션 백버튼 숨기기
+        //.navigationBarBackButtonHidden(true)  // 기본 네비게이션 백버튼 숨기기
     }
     
     
@@ -141,21 +141,21 @@ struct WorkplaceDifficultyDetailView: View {
         .padding(.horizontal)
     }
     
-    private var backButton: some View {
-        Button(action: {
-            presentationMode.wrappedValue.dismiss()
-        }) {
-            Image(systemName: "chevron.left")
-                .font(.regular24)
-                .foregroundColor(.primary)
-                .padding(8)
-                .background(Color.white.opacity(0.8))
-                .clipShape(Circle())
-        }
-        .padding(.leading, 16)
-        .padding(.top, 10)
-        .accessibilityLabel("뒤로가기")
-    }
+//    private var backButton: some View {
+//        Button(action: {
+//            presentationMode.wrappedValue.dismiss()
+//        }) {
+//            Image(systemName: "chevron.left")
+//                .font(.regular24)
+//                .foregroundColor(.primary)
+//                .padding(8)
+//                .background(Color.white.opacity(0.8))
+//                .clipShape(Circle())
+//        }
+//        .padding(.leading, 16)
+//        .padding(.top, 10)
+//        .accessibilityLabel("뒤로가기")
+//    }
     
     // Helper functions (unchanged)
     private func textColor(for workload: String) -> Color {
@@ -218,6 +218,8 @@ struct WorkloadArc: Shape {
 
 struct WorkplaceDifficultyDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkplaceDifficultyDetailView(workplace: ("Starbucks", "스타벅스", "서초점"))
+        NavigationStack {
+            WorkplaceDifficultyDetailView(workplace: ("Starbucks", "스타벅스", "서초점"))
+        }
     }
 }

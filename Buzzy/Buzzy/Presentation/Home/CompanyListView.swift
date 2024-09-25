@@ -27,7 +27,6 @@ struct CompanyListView: View {
         }
         .navigationTitle("시급이 높아요!")
         .navigationBarTitleDisplayMode(.inline)
-        
     }
 }
 
@@ -46,19 +45,22 @@ struct CompanyContentView: View {
                 .frame(maxWidth: .infinity)
                 .aspectRatio(contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .shadow(radius: 3)
             
             Text("\(announcement.title)")
                 .frame(maxWidth: .infinity, alignment: .leading) // 텍스트 왼쪽 정렬
+                .padding(.leading, 5)
                 .lineLimit(2)
                 .font(.semibold16)
             
             Text("\(announcement.company)")
                 .foregroundColor(Color.gray)
+                .padding(.leading, 5)
                 .frame(maxWidth: .infinity, alignment: .leading) // 텍스트 왼쪽 정렬
                 .font(.regular14)
             
         }
-        .padding() // 전체 VStack에 패딩 추가
+        .padding(5) // 전체 VStack에 패딩 추가
     }
     
 }
