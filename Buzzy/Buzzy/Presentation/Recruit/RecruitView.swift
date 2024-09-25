@@ -19,7 +19,6 @@ struct RecruitView: View {
     var filteredRecruits: [Recruit] {
         var results = recruits
         
-        
         if selectedIndex > 0 {
             let category = categories[selectedIndex]
             results = results.filter { recruit in
@@ -61,7 +60,6 @@ struct RecruitView: View {
     }
     
     var randomRecruits: [Recruit] {
-        
         return Array(filteredRecruits.shuffled().prefix(4))
     }
     
@@ -75,23 +73,29 @@ struct RecruitView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             TagLineView()
+                                .padding(.horizontal)
+                                .padding(.top)
                             
                             Spacer()
                             
                             Button(action: {
                                 showFilterModal.toggle()
                             }) {
-                                Text("위치 필터: \(selectedLocation)")
-                                    .font(.subheadline)
+                                Image(systemName: "location")
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
                                     .foregroundColor(.black)
-                                    .padding(8)
-                                    .cornerRadius(5)
                             }
                             .padding(.trailing)
                         }
-                        .padding()
+                        
+                        Text("현재 선택된 위치: \(selectedLocation)")
+                            .font(.subheadline)
+                            .padding(.horizontal)
+                            .padding(.bottom, 10)
                         
                         SearchView(search: $search)
+                            .padding(.bottom, 10)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -102,7 +106,7 @@ struct RecruitView: View {
                                         }
                                 }
                             }
-                            .padding()
+                            .padding(.horizontal)
                         }
                         
                         Text("추천")
@@ -140,17 +144,15 @@ struct RecruitView: View {
                             .padding(.leading)
                         }
                         
-                        // 전체 보기 버튼 추가
+                        
                         NavigationLink(destination: AllRecruitsView()) {
                             Text("대타 알바 전체 보기")
                                 .font(.headline)
                                 .foregroundColor(.black)
                                 .padding()
-                                .background(Color.gray.opacity(0.1))
+                                .background(Color.buzzyYellow)
                                 .frame(maxWidth: .infinity)
                                 .cornerRadius(30)
-                            
-                            
                         }
                         .padding(.horizontal)
                         .padding(.top)
@@ -210,15 +212,27 @@ struct TagLineView: View {
 
 struct SearchView: View {
     @Binding var search: String
+    
     var body: some View {
         HStack {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .padding(.trailing, 8)
+                
                 TextField("알바 대타 검색", text: $search)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                
+                if !search.isEmpty {
+                    Button(action: {
+                        search = ""
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .padding(.trailing, 8)
+                    }
+                }
             }
-            .padding(.all, 20)
             .background(Color.white)
             .cornerRadius(10)
             .padding(.trailing)
@@ -226,6 +240,7 @@ struct SearchView: View {
         .padding(.horizontal)
     }
 }
+
 
 struct CategoryView: View {
     let isActive: Bool
@@ -261,19 +276,23 @@ struct RecuritCardView: View {
                 .frame(width: size, height: 200 * (size / 210))
                 .cornerRadius(20)
             
-            Text(title)
-                .font(.title3)
-                .fontWeight(.bold)
-            
-            Spacer()
+            HStack {
+                Text(title)
+                    .font(.regular16)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.leading)
+                Spacer()
+            }
+            .padding(.horizontal)
             
             HStack {
-                Spacer()
                 Text("시급: \(hourlyWage)")
                     .font(.caption)
                     .fontWeight(.light)
-                    .padding(.trailing, 8)
+                    .padding(.leading, 17)
+                Spacer()
             }
         }
+        .padding(.bottom, 10)
     }
 }
