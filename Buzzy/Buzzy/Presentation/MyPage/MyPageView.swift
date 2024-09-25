@@ -46,6 +46,7 @@ struct MyPageView: View {
                         } label: {
                             Text("지원서 관리")
                                 .font(.regular24)
+                            
                         }
                         .frame(width: 340, height: 50)
                         .background(.yellow)

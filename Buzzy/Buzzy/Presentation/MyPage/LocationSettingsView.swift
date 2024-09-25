@@ -51,6 +51,7 @@ struct LocationSettingsView: View {
             }
             .mapStyle(.standard(elevation: .realistic))
             .frame(width: .infinity, height: 500)
+            .cornerRadius(15)
             
             
             Spacer()
