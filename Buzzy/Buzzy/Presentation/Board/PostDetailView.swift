@@ -22,7 +22,7 @@ public struct PostDetailView: View {
             
             HStack {
                 Button(action: {
-                    postFoundation.likePost(postID: post.id)
+                    postFoundation.increaseLike(for: post.id)
                 }) {
                     HStack {
                         Image(systemName: "hand.thumbsup.fill")
