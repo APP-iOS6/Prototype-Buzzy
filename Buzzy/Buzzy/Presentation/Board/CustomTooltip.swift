@@ -13,7 +13,7 @@ public struct CustomTooltip: Shape {
         let width = rect.width
         let height = rect.height
         
-        path.move(to: CGPoint(x: 0, y: -1))
+        path.move(to: CGPoint(x: 0, y: -5))
         path.addLine(to: CGPoint(x: 10, y: 0))
         path.addLine(to: CGPoint(x: width - 10, y: 0))
         path.addQuadCurve(to: CGPoint(x: width, y: 10), control: CGPoint(x: width, y: 0))
