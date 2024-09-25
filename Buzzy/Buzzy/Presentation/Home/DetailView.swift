@@ -14,7 +14,7 @@ struct DetailView: View {
         self.announcement = announcement
     }
     
-    var tabs = ["근무조건", "리뷰", "면접 후기"] // 탭 항목들
+    var tabs = ["근무조건", "리뷰", "난이도"] // 탭 항목들
     
     var body: some View {
         ZStack {
@@ -55,8 +55,8 @@ struct DetailView: View {
                             .padding(.top, -10)
                     } else if selectedTab == "리뷰" {
                         ReviewsView() // 리뷰 뷰
-                    } else if selectedTab == "면접 후기" {
-                        InterviewFeedbackView() // 면접후기 뷰
+                    } else if selectedTab == "난이도" {
+                        WorkplaceDifficultyDetailView(workplace: (imageName: announcement.imageName, title: announcement.title, subtitle: announcement.company))
                     }
                     
                     Spacer()
@@ -75,7 +75,7 @@ struct DetailView: View {
                             .frame(width: 28, height: 28)
                             .padding()
                     }
-                    .background(Color.green)
+                    .background(.accent)
                     .foregroundColor(.white)
                     .clipShape(Circle())
                     .shadow(radius: 5)

@@ -8,30 +8,58 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State private var workplaces: [(imageName: String, title: String, subtitle: String)] = [
+        ("Uniqlo", "유니클로", "강남점"),
+        ("Emart", "이마트", "물류센터"),
+        ("Starbucks", "스타벅스", "서초점"),
+        ("Cu", "CU", "마곡엠코점"),
+        ("HanamPig", "하남돼지집", "강남점"),
+        ("HongkongBanjum", "홍콩반점", "서초점"),
+        ("Coupang", "쿠팡", "물류센터"),
+    ]
+    @State private var showingDifficultyExplanation = false
+    @State private var tooltipPosition: CGPoint = .zero
+
     var body: some View {
-        NavigationStack {
-            ZStack {
-                VStack {
-                    HStack {
-                        Text("Buzzy")
-                            .font(.semibold20)
-                            .padding(.top)
-                            .foregroundStyle(.orange)
-                        //Spacer()
-                        
-                    }
-                    ScrollView {
-                        VStack{
-                            HomeScrollView()
-                            HomeRankingView()
-                            // Spacer()
+        GeometryReader { proxy in
+            NavigationStack {
+                ZStack {
+                    VStack {
+                        HStack {
+                            Image("Buzzylogowidth")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: proxy.size.width / 3)
+                        }
+                        ScrollView {
+                            VStack{
+                                WorkplaceDifficultyView(
+                                    workplaces: $workplaces,
+                                    showingDifficultyExplanation: $showingDifficultyExplanation,
+                                    tooltipPosition: $tooltipPosition
+                                )
+                                .overlay(tooltipOverlay)
+                                HomeScrollView()
+                                HomeRankingView()
+                            }
                         }
                     }
+                    
                 }
-                
             }
         }
     }
+    @ViewBuilder
+    public var tooltipOverlay: some View {
+        if showingDifficultyExplanation {
+            TooltipView(text: "업무 난이도를 평가해요\n★1개~2개 : easy\n★2개~3개 : normal\n★4개~5개 : hard")
+                .position(x: tooltipPosition.x + 95, y: tooltipPosition.y + 15)
+                .transition(.opacity)
+                .zIndex(2)
+        }
+    }
+
 }
 
 struct HomeScrollView: View {
