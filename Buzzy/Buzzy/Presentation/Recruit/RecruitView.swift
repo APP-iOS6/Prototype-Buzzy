@@ -10,17 +10,59 @@ import SwiftUI
 struct RecruitView: View {
     @State private var selectedIndex: Int = 0
     @State private var search: String = ""
+    @State private var showFilterModal: Bool = false
+    @State private var selectedLocation: String = "전체 위치"
     
     private let categories = ["All", "요식업", "편의점", "상하차", "카페", "피씨방", "당구장", "기타"]
+    private let locations = ["전체 위치", "서울", "부산", "대구", "광주", "인천"]
     
     var filteredRecruits: [Recruit] {
-        if search.isEmpty {
-            return recruits
-        } else {
-            return recruits.filter { recruit in
+        var results = recruits
+        
+        
+        if selectedIndex > 0 {
+            let category = categories[selectedIndex]
+            results = results.filter { recruit in
+                if category == "카페" {
+                    return recruit.title.localizedCaseInsensitiveContains("카페")
+                } else if category == "편의점" {
+                    return recruit.title.localizedCaseInsensitiveContains("편의점")
+                } else if category == "상하차" {
+                    return recruit.title.localizedCaseInsensitiveContains("상하차")
+                } else if category == "피씨방" {
+                    return recruit.title.localizedCaseInsensitiveContains("피씨방")
+                } else if category == "당구장" {
+                    return recruit.title.localizedCaseInsensitiveContains("당구")
+                } else if category == "요식업" {
+                    return recruit.title.localizedCaseInsensitiveContains("식당") || recruit.title.localizedCaseInsensitiveContains("요리")
+                } else if category == "기타" {
+                    return !["카페", "편의점", "상하차", "피씨방", "당구장", "식당", "요리"].contains(where: { recruit.title.localizedCaseInsensitiveContains($0) })
+                }
+                
+                return false
+            }
+        }
+        
+        // 검색
+        if !search.isEmpty {
+            results = results.filter { recruit in
                 recruit.title.localizedCaseInsensitiveContains(search)
             }
         }
+        
+        // 위치 필터
+        if selectedLocation != "전체 위치" {
+            results = results.filter { recruit in
+                recruit.location.localizedCaseInsensitiveContains(selectedLocation)
+            }
+        }
+        
+        return results
+    }
+    
+    var randomRecruits: [Recruit] {
+        
+        return Array(filteredRecruits.shuffled().prefix(4))
     }
     
     var body: some View {
@@ -28,13 +70,26 @@ struct RecruitView: View {
             ZStack {
                 Color(.systemBackground)
                     .edgesIgnoringSafeArea(.all)
-                    .font(.bold24)
                 
                 ScrollView {
                     VStack(alignment: .leading) {
-                        
-                        TagLineView()
-                            .padding()
+                        HStack {
+                            TagLineView()
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                showFilterModal.toggle()
+                            }) {
+                                Text("위치 필터: \(selectedLocation)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.black)
+                                    .padding(8)
+                                    .cornerRadius(5)
+                            }
+                            .padding(.trailing)
+                        }
+                        .padding()
                         
                         SearchView(search: $search)
                         
@@ -56,9 +111,9 @@ struct RecruitView: View {
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(filteredRecruits.prefix(4)) { recruit in
+                                ForEach(randomRecruits) { recruit in
                                     NavigationLink(destination: RecruitDetailView(recruit: recruit)) {
-                                        RecuritCardView(image: Image(recruit.image), size: 210, title: recruit.title, hourlyWage: recruit.hourlyWage, starCount: recruit.starCount)
+                                        RecuritCardView(image: Image(recruit.image), size: 210, title: recruit.title, hourlyWage: recruit.hourlyWage)
                                             .foregroundColor(.black)
                                     }
                                 }
@@ -67,16 +122,16 @@ struct RecruitView: View {
                             .padding(.leading)
                         }
                         
-                        Text("단기 알바")
+                        Text("대타 알바")
                             .font(.bold16)
                             .padding(.horizontal)
                             .padding(.top)
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(filteredRecruits.suffix(4)) { recruit in
+                                ForEach(filteredRecruits) { recruit in
                                     NavigationLink(destination: RecruitDetailView(recruit: recruit)) {
-                                        RecuritCardView(image: Image(recruit.image), size: 180, title: recruit.title, hourlyWage: recruit.hourlyWage, starCount: recruit.starCount)
+                                        RecuritCardView(image: Image(recruit.image), size: 180, title: recruit.title, hourlyWage: recruit.hourlyWage)
                                             .foregroundColor(.black)
                                     }
                                 }
@@ -84,9 +139,60 @@ struct RecruitView: View {
                             }
                             .padding(.leading)
                         }
+                        
+                        // 전체 보기 버튼 추가
+                        NavigationLink(destination: AllRecruitsView()) {
+                            Text("대타 알바 전체 보기")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(Color.gray.opacity(0.1))
+                                .frame(maxWidth: .infinity)
+                                .cornerRadius(30)
+                            
+                            
+                        }
+                        .padding(.horizontal)
+                        .padding(.top)
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showFilterModal) {
+            FilterView(selectedLocation: $selectedLocation, showFilterModal: $showFilterModal)
+        }
+    }
+}
+
+struct FilterView: View {
+    @Binding var selectedLocation: String
+    @Binding var showFilterModal: Bool
+    
+    private let locations = ["전체 위치", "서울", "경기", "인천", "대구", "광주", "부산"]
+    var body: some View {
+        NavigationView {
+            List {
+                Section(header: Text("위치 선택")) {
+                    ForEach(locations, id: \.self) { location in
+                        Button(action: {
+                            selectedLocation = location
+                            showFilterModal = false
+                        }) {
+                            HStack {
+                                Text(location)
+                                Spacer()
+                                if location == selectedLocation {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("위치 필터", displayMode: .inline)
+            .navigationBarItems(trailing: Button("완료") {
+                showFilterModal = false
+            })
         }
     }
 }
@@ -97,8 +203,8 @@ struct RecruitView: View {
 
 struct TagLineView: View {
     var body: some View {
-        Text("단기 알바 모집")
-            .font(.bold16)
+        Text("알바 대타 모집")
+            .font(.bold24)
     }
 }
 
@@ -109,7 +215,7 @@ struct SearchView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .padding(.trailing, 8)
-                TextField("단기 알바 검색", text: $search)
+                TextField("알바 대타 검색", text: $search)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             .padding(.all, 20)
@@ -124,15 +230,17 @@ struct SearchView: View {
 struct CategoryView: View {
     let isActive: Bool
     let text: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(text)
                 .font(.system(size: 18))
                 .fontWeight(.medium)
-
+            
             if isActive {
-                Color(.black)
-                    .frame(width: 15, height: 2)
+                Color.black
+                    .frame(height: 2)
+                    .frame(maxWidth: text.size(withAttributes: [.font: UIFont.systemFont(ofSize: 18)]).width)
                     .clipShape(Capsule())
             }
         }
@@ -145,7 +253,6 @@ struct RecuritCardView: View {
     let size: CGFloat
     let title: String
     let hourlyWage: String
-    let starCount: Int
     
     var body: some View {
         VStack {
@@ -158,21 +265,15 @@ struct RecuritCardView: View {
                 .font(.title3)
                 .fontWeight(.bold)
             
-            HStack(spacing: 2) {
-                ForEach(0..<starCount, id: \.self) { _ in
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                }
+            Spacer()
+            
+            HStack {
                 Spacer()
-                
                 Text("시급: \(hourlyWage)")
                     .font(.caption)
                     .fontWeight(.light)
+                    .padding(.trailing, 8)
             }
         }
-        .frame(width: size)
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(20)
     }
 }

@@ -7,20 +7,21 @@
 
 import SwiftUI
 
+
 struct RecruitDetailView: View {
     var recruit: Recruit
     @State private var isApplied: Bool = false
-
+    
     init(recruit: Recruit) {
         self.recruit = recruit
         loadAppliedStatus()
     }
-
+    
     var body: some View {
         ZStack {
             Color(.systemBackground)
                 .ignoresSafeArea()
-
+            
             ScrollView {
                 
                 Image(recruit.image)
@@ -59,12 +60,12 @@ struct RecruitDetailView: View {
             loadAppliedStatus()
         }
     }
-
+    
     private func loadAppliedStatus() {
         let key = "applied_\(recruit.id.uuidString)"
         isApplied = UserDefaults.standard.bool(forKey: key)
     }
-
+    
     private func saveAppliedStatus() {
         let key = "applied_\(recruit.id.uuidString)"
         UserDefaults.standard.set(isApplied, forKey: key)
@@ -73,87 +74,85 @@ struct RecruitDetailView: View {
 
 struct DescriptionView: View {
     var recruit: Recruit
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(recruit.title)
                 .font(.title)
                 .fontWeight(.bold)
-
+            
             
             HStack(spacing: 4) {
-                ForEach(0..<recruit.starCount, id: \.self) { _ in
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                }
-                Spacer()
+                
             }
-
-            Text("직무")
-                .fontWeight(.medium)
-                .padding(.vertical, 8)
-            Text(recruit.jobDescription)
-                .lineSpacing(8.0)
-                .opacity(0.6)
-
-            
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("시급")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
-                    Text(recruit.hourlyWage)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                Spacer()
-
-                VStack(alignment: .leading) {
-                    Text("위치")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
-                    Text(recruit.location)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.vertical)
-
-            
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("근무일")
-                        .fontWeight(.semibold)
-                    Text(recruit.workDays)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                Spacer()
-
-                VStack(alignment: .leading) {
-                    Text("근무 시간")
-                        .fontWeight(.semibold)
-                    Text(recruit.workHours)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.vertical)
-
-           
-            Text("일하는 기간")
-                .fontWeight(.semibold)
-            Text(recruit.workPeriod)
-                .opacity(0.6)
+            Spacer()
         }
-        .padding()
-        .padding(.top)
-        .background(Color(.systemBackground))
-        .offset(x: 0, y: -30.0)
+        
+        Text("직무")
+            .fontWeight(.medium)
+            .padding(.vertical, 8)
+        Text(recruit.jobDescription)
+            .lineSpacing(8.0)
+            .opacity(0.6)
+        
+        
+        HStack(alignment: .top) {
+            VStack(alignment: .leading) {
+                Text("시급")
+                    .font(.system(size: 16))
+                    .fontWeight(.semibold)
+                Text(recruit.hourlyWage)
+                    .opacity(0.6)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 20)
+            
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                Text("위치")
+                    .font(.system(size: 16))
+                    .fontWeight(.semibold)
+                Text(recruit.location)
+                    .opacity(0.6)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 30)
+        }
+        .padding(.vertical)
+        
+        
+        HStack(alignment: .top) {
+            VStack(alignment: .leading) {
+                Text("일하는 기간")
+                    .fontWeight(.semibold)
+                Text(recruit.workPeriod)
+                    .opacity(0.6)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 20)
+            
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                Text("근무 시간")
+                    .fontWeight(.semibold)
+                Text(recruit.workHours)
+                    .opacity(0.6)
+                
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 30)
+            
+            
+        }
+        .padding(.vertical)
+        
+        
     }
+    
 }
+
 
 struct RecruitDetailView_Previews: PreviewProvider {
     static var previews: some View {
