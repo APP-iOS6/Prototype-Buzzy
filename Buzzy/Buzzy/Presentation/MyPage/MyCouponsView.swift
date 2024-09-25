@@ -83,6 +83,7 @@ struct CouponCardView: View {
                 Text(coupon.dDay)
                     .font(.caption)
                     .foregroundColor(.red)
+                
                 Spacer()
                 Text(coupon.expiryDate)
                     .font(.caption)
