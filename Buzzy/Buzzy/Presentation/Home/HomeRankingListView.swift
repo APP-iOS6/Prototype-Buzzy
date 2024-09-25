@@ -40,6 +40,8 @@ struct HomeRankingListView: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                         .cornerRadius(5)
+                    
+                    
 
                     VStack(alignment: .leading, spacing: 4) {
                         Text(rank.name)
@@ -50,6 +52,10 @@ struct HomeRankingListView: View {
                                 .foregroundColor(.yellow)
                             Text(rank.rating)
                             Text("(\(rank.review))")
+                            Divider()
+                                .frame(height: 10)
+                            Text("난이도:")
+                            Text(rank.difficultylevel).foregroundColor(viewModel.colorForDifficulty(rank.difficultylevel))
                         }
                         .font(.system(size: 14))
                         .foregroundColor(.gray)

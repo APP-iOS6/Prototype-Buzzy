@@ -26,63 +26,78 @@ struct HomeRankingView: View {
                     Spacer()
                     
                     NavigationLink(destination: HomeRankingDetailView()) {
-                        Image(systemName: "chevron.right")
-                            .font(.regular24)
-                            .padding()
-                            .foregroundColor(.black)
+                        HStack {
+                            Text("더보기")
+                                .font(.headline)
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding()
+                        .foregroundColor(.gray)
                     }
                 }
                 .padding(.horizontal)
-                
-                HStack {
-                    Button("조회수 급상승") {
-                        selectedButton = 0 // 첫 번째 버튼 선택
-                        viewModel.sortRanks(by: .byViews) // 조회수로 정렬
+                //코드 줄이고 싶다
+                ScrollView(.horizontal){
+                    HStack {
+                        
+                        Button("조회수 급상승") {
+                            selectedButton = 0 // 첫 번째 버튼 선택
+                            viewModel.sortRanks(by: .byViews) // 조회수로 정렬
+                        }
+                        .padding(5)
+                        .background(selectedButton == 0 ? customGray : Color.clear) // 선택된 경우 검정색 배경
+                        .foregroundColor(selectedButton == 0 ? .white : .black) // 선택된 경우 흰색 글자
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                        
+                        Button("평점순") {
+                            selectedButton = 1 // 두 번째 버튼 선택
+                            viewModel.sortRanks(by: .byRating) // 평점순으로 정렬
+                        }
+                        .padding(5)
+                        .background(selectedButton == 1 ? customGray : Color.clear)
+                        .foregroundColor(selectedButton == 1 ? .white : .black)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                        
+                        Button("리뷰순") {
+                            selectedButton = 2
+                            viewModel.sortRanks(by: .byViews) // 조회수랑 같게 함
+                        }
+                        .padding(5)
+                        .background(selectedButton == 2 ? customGray : Color.clear)
+                        .foregroundColor(selectedButton == 2 ? .white : .black)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                        
+                        Button("난이도 높은순") {
+                            selectedButton = 3
+                            viewModel.sortRanks(by: .byDifficulty) // 조회수랑 같게 함
+                        }
+                        .padding(5)
+                        .background(selectedButton == 3 ? customGray : Color.clear)
+                        .foregroundColor(selectedButton == 3 ? .white : .black)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                        
+                        Button("난이도 낮은순") {
+                            selectedButton = 4
+                            viewModel.sortRanks(by: .byEasy) // 조회수랑 같게 함
+                        }
+                        .padding(5)
+                        .background(selectedButton == 4 ? customGray : Color.clear)
+                        .foregroundColor(selectedButton == 4 ? .white : .black)
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                        
+                        Spacer()
+                        
                     }
-                    .padding(5)
-                    .background(selectedButton == 0 ? customGray : Color.clear) // 선택된 경우 검정색 배경
-                    .foregroundColor(selectedButton == 0 ? .white : .black) // 선택된 경우 흰색 글자
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                    
-                    Button("평점순") {
-                        selectedButton = 1 // 두 번째 버튼 선택
-                        viewModel.sortRanks(by: .byRating) // 평점순으로 정렬
-                    }
-                    .padding(5)
-                    .background(selectedButton == 1 ? customGray : Color.clear)
-                    .foregroundColor(selectedButton == 1 ? .white : .black)
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                    
-                    Button("리뷰순") {
-                        selectedButton = 2
-                        viewModel.sortRanks(by: .byViews) // 조회수랑 같게 함
-                    }
-                    .padding(5)
-                    .background(selectedButton == 2 ? customGray : Color.clear)
-                    .foregroundColor(selectedButton == 2 ? .white : .black)
-                    .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                    
-                    Spacer()
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
                 
                 // 랭킹 리스트 뷰
                 HomeRankingListView(viewModel: viewModel, showShadowAndSeparator: false)
-                
-                
-                NavigationLink(destination: HomeRankingDetailView()) {
-                    Text("랭킹 더 보기")
-                        .padding(.horizontal, 130)
-                        .padding(.vertical, 10)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(customGray, lineWidth: 1))
-                        .padding(.top, 50)
-                        .foregroundColor(.black)
-                }
-               
-                
                 Spacer()
             }
         }
