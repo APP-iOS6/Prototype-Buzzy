@@ -19,9 +19,10 @@ public struct BoardView: View {
     }
     
     public enum SortOrder: String, CaseIterable {
-        case recommended = "추천순"
-        case latest = "최신순"
+        case recommended = "최신순"
+        case latest = "인기순"
     }
+    
     
     public var body: some View {
         NavigationStack {
@@ -62,12 +63,10 @@ public struct BoardView: View {
                         }
                     }
                 }
-                //.background(Color.gray.opacity(0.1))
             }
         }
     }
 
-    
     public init() {}
 }
 
@@ -81,41 +80,68 @@ struct PostListItemView: View {
                     .font(.bold16)
                     .lineLimit(1)
                 
-                HStack(spacing: 10) {
-                    Text("1시간 전")
-                        .font(.regular12)
-                        .foregroundColor(.gray)
+                HStack(spacing: 1) {
+                    HStack(spacing: 1) {
+                        Image(systemName: "hand.thumbsup.fill")
+                            .foregroundColor(Color("BuzzyPink"))
+                        Text("\(Int.random(in: 1...9))")
+                            .font(.semibold12)
+                            .foregroundColor(Color("BuzzyPink"))
+                    }
+                    .frame(width: 30, height: 10)
                     
-                    Text("조회 \(Int.random(in: 10...100))")
-                        .font(.regular12)
-                        .foregroundColor(.gray)
+                    HStack(spacing: 1) {
+                        Image(systemName: "bubble.left.fill")
+                            .foregroundColor(Color("BuzzySky"))
+                            .offset(y: 1)
+                        Text("\(Int.random(in: 1...9))")
+                            .font(.semibold12)
+                            .foregroundColor(Color("BuzzySky"))
+                    }
+                    .frame(width: 50, height: 20)
                     
-                    Text("좋아요 \(post.likes)")
-                        .font(.regular12)
-                        .foregroundColor(.gray)
-                    
-                    Text("댓글 \(post.comments.count)")
-                        .font(.regular12)
-                        .foregroundColor(.gray)
+                    HStack(spacing: 8){
+                        Text("\(Int.random(in: 1...12))시간 전")
+                            .font(.regular12)
+                            .foregroundColor(.gray)
+                        
+                        Text("조회 \(Int.random(in: 10...100))")
+                            .font(.regular12)
+                            .foregroundColor(.gray)
+                    }
                 }
             }
             
-            
             Spacer()
             
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray.opacity(0.3))
+            Image(postImage(for: post.title))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
-                .overlay(
-                    Image(systemName: "photo")
-                        .foregroundColor(.white)
-                )
+                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .padding()
         .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
         .padding(.horizontal)
+    }
+    
+    func postImage(for title: String) -> String {
+        switch title {
+        case "편의점에서 진상 만나면 멘탈 지키는 법":
+            return "ShopCat"
+        case "칼질하다 손 자주 베는 사람은 꼭 봐라":
+            return "Dogknife"
+        case "길 잘 못 찾는 사람은 무조건 GPS 쓰자":
+            return "Where"
+        case "주유소 알바할 때 손님 차 긁히면 끝장임":
+            return "GasStation"
+        case "서빙할 때 테이블 우선순위 정해놓으면 훨씬 수월함":
+            return "Serving"
+        default:
+            return "defaultImage"
+        }
     }
 }
 
