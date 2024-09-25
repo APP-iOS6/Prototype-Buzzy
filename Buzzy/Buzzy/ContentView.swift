@@ -11,10 +11,10 @@ struct ContentView: View {
     @State private var selectedTab = 0
     @State private var isExpanded: Bool = false
     @State private var expandedHeight: CGFloat = 70
+    @State private var isSearchViewActive = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // TabView와 BoardView를 독립적으로 분리
             TabView(selection: $selectedTab) {
                 HomeView()
                     .tabItem {
@@ -22,7 +22,7 @@ struct ContentView: View {
                         Text("홈")
                     }
                     .tag(0)
-                BoardView()
+                BoardView(isSearchViewActive: $isSearchViewActive)
                     .tabItem {
                         Image(systemName: "list.bullet.rectangle")
                         Text("게시판")
@@ -30,7 +30,7 @@ struct ContentView: View {
                     .tag(1)
                 RecruitView()
                     .tabItem {
-                        Image(systemName: "person.3.sequence.fill")
+                        Image(systemName: "person.2.fill")
                         Text("모집")
                     }
                     .tag(2)
@@ -42,12 +42,11 @@ struct ContentView: View {
                     .tag(3)
             }
             
-            // BoardView에만 ExpandedTabView 표시 (별도의 레이어로 추가)
-            if selectedTab == 1 {
-                ExpandedTabView(isExpanded: $isExpanded, expandedHeight: $expandedHeight)
+            if selectedTab == 1 && !isSearchViewActive {
+                ExpandedTabView(isExpanded: $isExpanded, expandedHeight: $expandedHeight, isSearchViewActive: $isSearchViewActive)
                     .frame(height: expandedHeight)
                     .background(Color.barcolor)
-                    .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: -5)
+                    .shadow(color: .black.opacity(0.1), radius: 1)
                     .animation(.easeInOut, value: expandedHeight)
                     .offset(y: isExpanded ? 38 : expandedHeight - 118)
             }
@@ -60,4 +59,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-

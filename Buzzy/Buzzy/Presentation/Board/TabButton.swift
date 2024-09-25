@@ -19,10 +19,10 @@ public struct TabButton: View {
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .foregroundColor(isSelected ? .white : Color.accentColor)
-                .background(isSelected ? Color.accentColor : Color.clear)
+                .background(isSelected ? Color.accentColor : Color.buzzyWhite)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.5), lineWidth: 1)
+                        .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.3), lineWidth: 1)
                 )
                 .cornerRadius(20)
         }

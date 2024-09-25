@@ -2,18 +2,25 @@
 //  BoardView.swift
 //  Buzzy
 //
-//  Created by Hyeonjeong Sim on 9/24/24.
+//  Created by Hyeonjeong Sim on 9/26/24.
 //
-// 다크모드 적용 확인
 
 import SwiftUI
 
 public struct BoardView: View {
+    @Binding var isSearchViewActive: Bool // 이 줄을 변경
     @ObservedObject var postFoundation = PostFoundation()
     @State private var selectedPost: BoardPost? = nil
     @State private var isDetailViewActive = false
     @State private var selectedTab: Tab = .tips
     @State private var sortOrder: SortOrder = .recommended
+    @State private var isExpanded = false
+    @State private var expandedHeight: CGFloat = 70
+    
+    // 이 이니셜라이저를 추가
+    public init(isSearchViewActive: Binding<Bool>) {
+        self._isSearchViewActive = isSearchViewActive
+    }
     
     public enum Tab {
         case tips, qa
@@ -24,49 +31,66 @@ public struct BoardView: View {
         case latest = "인기순"
     }
     
-    public var body: some View {
-        NavigationStack {
-            VStack(spacing: -11) {
-                HStack {
-                    HStack(spacing: 10) {
-                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
-                            selectedTab = .tips
-                        }
-                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
-                            selectedTab = .qa
-                        }
-                    }
-                    Spacer()
-                    SortOrderMenu(sortOrder: $sortOrder)
-                }
-                .padding()
-
-                ScrollView {
-                    VStack(spacing: 18) {
-                        ForEach(selectedTab == .tips ? postFoundation.posts : postFoundation.qaPosts) { post in
-                            Button(action: {
-                                selectedPost = post
-                                isDetailViewActive = true
-                            }) {
-                                PostListItemView(post: post)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                    .padding(.vertical)
-                }
-                .frame(maxHeight: .infinity) // ScrollView가 화면에서 고정되도록 함
-                .navigationDestination(isPresented: $isDetailViewActive) {
-                    if let selectedPost = selectedPost {
-                        PostDetailView(post: selectedPost, postFoundation: postFoundation)
-                    }
-                }
-            }
+    // 게시글을 정렬하는 함수
+    private func sortedPosts() -> [BoardPost] {
+        let posts = selectedTab == .tips ? postFoundation.posts : postFoundation.qaPosts
+        
+        switch sortOrder {
+        case .recommended:
+            return posts.sorted { $0.createdAt > $1.createdAt }
+        case .latest:
+            return posts.sorted { $0.likes > $1.likes }
         }
     }
     
-    public init() {}
+    public var body: some View {
+        NavigationStack {
+            VStack(spacing: 0) {
+                
+                // 기존의 BoardView 내용
+                VStack(spacing: -11) {
+                    HStack {
+                        HStack(spacing: 10) {
+                            TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
+                                selectedTab = .tips
+                            }
+                            TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
+                                selectedTab = .qa
+                            }
+                        }
+                        Spacer()
+                        SortOrderMenu(sortOrder: $sortOrder)
+                    }
+                    .padding()
+                    
+                    ScrollView {
+                        VStack(spacing: 18) {
+                            ForEach(sortedPosts()) { post in
+                                Button(action: {
+                                    selectedPost = post
+                                    isDetailViewActive = true
+                                }) {
+                                    PostListItemView(post: post)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        .padding(.vertical)
+                    }
+                }
+            }
+            .navigationDestination(isPresented: $isDetailViewActive) {
+                if let selectedPost = selectedPost {
+                    PostDetailView(post: selectedPost, postFoundation: postFoundation)
+                }
+            }
+            .navigationDestination(isPresented: $isSearchViewActive) {
+                BoardSearchView(isSearchViewActive: $isSearchViewActive)
+            }
+        }
+    }
 }
+
 
 struct PostListItemView: View {
     let post: BoardPost
@@ -82,28 +106,28 @@ struct PostListItemView: View {
                     HStack(spacing: 1) {
                         Image(systemName: "hand.thumbsup.fill")
                             .foregroundColor(Color("BuzzyPink"))
-                        Text("\(Int.random(in: 1...9))")
+                        Text("\(post.likes)")  // 좋아요 개수 표시
                             .font(.semibold12)
                             .foregroundColor(Color("BuzzyPink"))
                     }
-                    .frame(width: 30, height: 10)
+                    .frame(width: 36, height: 10)
                     
                     HStack(spacing: 1) {
                         Image(systemName: "bubble.left.fill")
                             .foregroundColor(Color("BuzzySky"))
                             .offset(y: 1)
-                        Text("\(Int.random(in: 1...9))")
+                        Text("\(post.comments.count)")  // 댓글 개수 표시
                             .font(.semibold12)
                             .foregroundColor(Color("BuzzySky"))
                     }
-                    .frame(width: 50, height: 20)
+                    .frame(width: 40, height: 20)
                     
-                    HStack(spacing: 8){
-                        Text("\(Int.random(in: 1...12))시간 전")
+                    HStack(spacing: 8) {
+                        Text("\(timeAgoSince(post.createdAt))")  // 시간차 계산 후 표시
                             .font(.regular12)
                             .foregroundColor(.gray)
                         
-                        Text("조회 \(Int.random(in: 10...100))")
+                        Text("조회 \(Int.random(in: 10...100))")  // 조회 수는 랜덤으로 대체
                             .font(.regular12)
                             .foregroundColor(.gray)
                     }
@@ -126,8 +150,27 @@ struct PostListItemView: View {
     }
 }
 
+// 시간 차이를 계산하는 함수
+func timeAgoSince(_ date: Date) -> String {
+    let secondsAgo = Int(Date().timeIntervalSince(date))
+    
+    let minute = 60
+    let hour = 3600
+    let day = 86400
+    
+    if secondsAgo < minute {
+        return "\(secondsAgo)초 전"
+    } else if secondsAgo < hour {
+        return "\(secondsAgo / minute)분 전"
+    } else if secondsAgo < day {
+        return "\(secondsAgo / hour)시간 전"
+    } else {
+        return "\(secondsAgo / day)일 전"
+    }
+}
+
 struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView()
+        BoardView(isSearchViewActive: .constant(false))
     }
 }

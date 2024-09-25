@@ -10,28 +10,49 @@ import SwiftUI
 struct ExpandedTabView: View {
     @Binding var isExpanded: Bool
     @Binding var expandedHeight: CGFloat
-    
+    @Binding var isSearchViewActive: Bool
+    @State private var showingPostWriteView = false
+
     var body: some View {
         VStack(spacing: 5) {
             HStack {
                 ToggleButton(isExpanded: $isExpanded, expandedHeight: $expandedHeight)
-                
-                Spacer()
-                
-                ActionButton(image: "magnifyingglass", title: "검색", action: {
-                    // 검색 기능 구현
-                })
-                
-                Spacer(minLength: 50)
-                
-                ActionButton(image: "pencil.line", title: "글쓰기", action: {
-                    // 글쓰기 기능 구현
-                })
-                
+
+                Spacer(minLength: 40)
+
+                // 검색 버튼을 누르면 BoardSearchView로 이동
+                Button(action: {
+                    isSearchViewActive = true
+                }) {
+                    HStack(spacing: 3) {
+                        Image(systemName: "magnifyingglass")
+                        Text("검색")
+                    }
+                    .foregroundColor(.accentColor)
+                    .padding(15)
+                }
+
+                Spacer(minLength: 39)
+
+                Button(action: {
+                    showingPostWriteView = true
+                }) {
+                    HStack(spacing: 3) {
+                        Image(systemName: "pencil.line")
+                        Text("글쓰기")
+                    }
+                    .foregroundColor(.accentColor)
+                    .padding(15)
+                }
+                .sheet(isPresented: $showingPostWriteView) {
+                    PostWriteView()
+                }
+
                 Spacer()
             }
+            .font(.semibold16)
             .padding(.horizontal)
-            
+
             if isExpanded {
                 Spacer()
             }
@@ -43,7 +64,7 @@ struct ExpandedTabView: View {
 struct ToggleButton: View {
     @Binding var isExpanded: Bool
     @Binding var expandedHeight: CGFloat
-    
+
     var body: some View {
         Button(action: {
             withAnimation(.easeInOut) {
@@ -62,7 +83,7 @@ struct ActionButton: View {
     var image: String
     var title: String
     var action: () -> Void
-    
+
     var body: some View {
         HStack(spacing: 3) {
             Image(systemName: image)
@@ -83,9 +104,20 @@ extension View {
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
-    
+
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+
+struct ExpandedTabView_Previews: PreviewProvider {
+    @State static var isExpanded = false
+    @State static var expandedHeight: CGFloat = 70
+    @State static var isSearchViewActive = false
+
+    static var previews: some View {
+        ExpandedTabView(isExpanded: $isExpanded, expandedHeight: $expandedHeight, isSearchViewActive: $isSearchViewActive)
     }
 }
