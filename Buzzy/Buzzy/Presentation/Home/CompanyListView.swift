@@ -12,6 +12,11 @@ struct CompanyListView: View {
         GridItem(.flexible()), // 첫 번째 열
         GridItem(.flexible())  // 두 번째 열
     ]
+    private var keyword: PartTimeKeyWord
+    
+    init(keyword: PartTimeKeyWord) {
+        self.keyword = keyword
+    }
     
     var body: some View {
         ScrollView {
@@ -25,7 +30,7 @@ struct CompanyListView: View {
             }
             //.padding() // 여백 추가
         }
-        .navigationTitle("시급이 높아요!")
+        .navigationTitle("\(keyword.rawValue)")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -65,11 +70,11 @@ struct CompanyContentView: View {
     
 }
 
-#Preview {
-    NavigationStack {
-        CompanyListView()
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        CompanyListView()
+//    }
+//}
 
 
 #Preview("content") {

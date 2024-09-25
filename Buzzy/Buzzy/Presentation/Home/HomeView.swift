@@ -79,7 +79,7 @@ struct HomeScrollView: View {
                             .font(.semibold16)
                             .padding()
                         Spacer()
-                        NavigationLink(destination: CompanyListView()) {
+                        NavigationLink(destination: CompanyListView(keyword: keyword)) {
                             HStack {
                                 Text("더보기")
                                     .font(.subheadline)
