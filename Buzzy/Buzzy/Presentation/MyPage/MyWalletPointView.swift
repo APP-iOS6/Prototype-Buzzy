@@ -11,6 +11,9 @@ struct MyWalletPointView: View {
     
     @State private var currentPoints: Int = 15000
     @State private var selectedView: String = "포인트 내역"
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+    @State private var selectedReward: (String, Int)? = nil // 선택한 보상 저장
     
     let transactionHistory = [
         ("편의점 알바", "+ 5000", "2024-09-22"),
@@ -41,7 +44,6 @@ struct MyWalletPointView: View {
             .background(Color(.systemGray6))
             .cornerRadius(10)
             
-            
             Picker("선택", selection: $selectedView) {
                 Text("포인트 내역").tag("포인트 내역")
                 Text("보상 교환").tag("보상 교환")
@@ -50,7 +52,6 @@ struct MyWalletPointView: View {
             .pickerStyle(.segmented)
             .background(Color(.yellow))
             .cornerRadius(10)
-            
             
             if selectedView == "포인트 내역" {
                 
@@ -90,16 +91,15 @@ struct MyWalletPointView: View {
                                     .font(.regular14)
                                     .foregroundColor(.gray)
                                 Button(action: {
-                                    
-                                    if currentPoints >= reward.1 {
-                                        currentPoints -= reward.1
-                                    }
+                                    // 교환 확인을 위해 선택한 보상 저장
+                                    selectedReward = reward
+                                    showAlert = true
                                 }) {
                                     Text("교환")
                                         .foregroundColor(.white)
                                         .padding(.vertical, 8)
                                         .padding(.horizontal, 24)
-                                        .background(currentPoints >= reward.1 ? Color.blue : Color.gray)
+                                        .background(currentPoints >= reward.1 ? Color.blue : Color.gray) // 포인트에 따라 색상 변경
                                         .cornerRadius(10)
                                 }
                                 .disabled(currentPoints < reward.1)
@@ -143,6 +143,22 @@ struct MyWalletPointView: View {
             }
             .padding(.horizontal)
             .padding(.bottom, 20)
+        }
+        // 교환 여부를 묻는 Alert
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("보상 교환"),
+                message: Text("\(selectedReward?.0 ?? "")을(를) 교환하시겠습니까?"),
+                primaryButton: .default(Text("교환"), action: {
+                    if let reward = selectedReward, currentPoints >= reward.1 {
+                        currentPoints -= reward.1
+                        alertMessage = "\(reward.0)을(를) 성공적으로 교환했습니다!"
+                    } else {
+                        alertMessage = "포인트가 부족합니다."
+                    }
+                }),
+                secondaryButton: .cancel(Text("취소"))
+            )
         }
         .navigationTitle("지갑 포인트")
     }
