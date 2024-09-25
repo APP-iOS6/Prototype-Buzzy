@@ -58,9 +58,6 @@ struct ProfileDetailsView: View {
                             .font(.regular16)
                     }
                 }
-                .onTapGesture {
-                    showImagePicker = true
-                }
                 
                 
                 .padding(.top, 32)

@@ -37,17 +37,17 @@ struct SettingsView: View {
 //                Image(systemName: "magnifyingglass")
 //                TextField("검색어를 입력하세요", text: $searchText)
 //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                
+//
 //                if !searchText.isEmpty {
 //                    Button(action: {
 //                        searchText = ""
 //                    }) {
 //                        Image(systemName: "xmark.circle.fill")
 //                            .foregroundStyle(.gray)
-//                        
+//
 //                    }
 //                }
-//                
+//
 //            }
 //            .padding(3)
             
