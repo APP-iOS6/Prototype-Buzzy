@@ -4,9 +4,10 @@
 //
 //  Created by Hyeonjeong Sim on 9/24/24.
 //
-
+// 다크모드 적용 확인
 
 import SwiftUI
+
 
 public struct BoardView: View {
     @ObservedObject var postFoundation = PostFoundation()
