@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyPostDetailView: View {
     let post: Post
+    @State private var commentText: String = ""
     
     var body: some View {
         ScrollView {
@@ -24,17 +25,26 @@ struct MyPostDetailView: View {
                     .padding(.top, 8)
                 
                 HStack {
-                    Text("댓글 \(post.comments)")
+                    Button(action: {
+                            print("공감버튼 누름")
+                    }) {
+                        Image(systemName: "heart")
+                        Text("공감 \(post.comments)")
+                    }
                     Spacer()
+                    
                     Text("평점: \(post.star, specifier: "%.1f")")
+                        
                 }
                 .padding(.top, 8)
                 .font(.regular14)
+                Divider()
                 
-                
-                Text("댓글 목록")
-                    .font(.headline)
-                    .padding(.top, 16)
+                    Text("댓글 목록")
+                        .font(.semibold16)
+                        .padding(.top, 16)
+                        .padding(.bottom, 20)
+
                 
                 ForEach(post.commnetsList, id: \.author) { comment in
                     VStack(alignment: .leading, spacing: 8) {
@@ -50,6 +60,18 @@ struct MyPostDetailView: View {
                             .font(.regular14)
                         Divider()
                     }
+                }
+                
+                HStack {
+                    TextField("댓글을 입력하세요...", text: $commentText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                        Button(action: {
+                            
+                        }) {
+                            Text("댓글달기")
+                    }
+                        .disabled(commentText.isEmpty)
                 }
                 Spacer()
             }
