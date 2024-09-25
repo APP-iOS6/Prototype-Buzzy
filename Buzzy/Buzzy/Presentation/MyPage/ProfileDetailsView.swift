@@ -19,12 +19,14 @@ struct ProfileDetailsView: View {
             VStack(alignment: .leading, spacing: 16) {
                 
                 HStack(spacing: 16) {
-                    ZStack(alignment: .bottomTrailing) { // Use ZStack to overlay the camera icon
+                    
+                    ZStack(alignment: .bottomTrailing) {
+                        
                         if let selectedImage = selectedImage {
                             Image(uiImage: selectedImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
+                                .frame(width: 85, height: 85)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.black, lineWidth: 1))
                                 .padding(.leading, 5)
@@ -32,7 +34,7 @@ struct ProfileDetailsView: View {
                             Image("1")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
+                                .frame(width: 90, height: 90)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.black, lineWidth: 1))
                                 .padding(.leading, 5)
@@ -41,7 +43,7 @@ struct ProfileDetailsView: View {
                         // Camera icon
                         Image(systemName: "camera.circle.fill")
                             .resizable()
-                            .frame(width: 20, height: 20)
+                            .frame(width: 28, height: 28)
                             .foregroundColor(.white) // Change color as needed
                             .background(Color.black.opacity(0.7))
                             .clipShape(Circle())

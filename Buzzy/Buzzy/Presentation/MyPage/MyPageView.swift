@@ -21,7 +21,7 @@ struct MyPageView: View {
                             Image("1")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 80, height: 80)
+                                .frame(width: 85, height: 85)
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle().stroke(Color.black, lineWidth: 1))
