@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 public struct BoardView: View {
     @ObservedObject var postFoundation = PostFoundation()
     @State private var selectedPost: BoardPost? = nil
@@ -25,50 +24,47 @@ public struct BoardView: View {
         case latest = "인기순"
     }
     
-    
     public var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
-                VStack(spacing: -11) {
-                    
-                    HStack {
-                        HStack(spacing: 10) {
-                            TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
-                                selectedTab = .tips
-                            }
-                            TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
-                                selectedTab = .qa
-                            }
+            VStack(spacing: -11) {
+                HStack {
+                    HStack(spacing: 10) {
+                        TabButton(title: "🍯 꿀팁", isSelected: selectedTab == .tips) {
+                            selectedTab = .tips
                         }
-                        Spacer()
-                        SortOrderMenu(sortOrder: $sortOrder)
+                        TabButton(title: "💬 Q&A", isSelected: selectedTab == .qa) {
+                            selectedTab = .qa
+                        }
                     }
-                    .padding()
+                    Spacer()
+                    SortOrderMenu(sortOrder: $sortOrder)
+                }
+                .padding()
 
-                    ScrollView {
-                        LazyVStack(spacing: 18) {
-                            ForEach(selectedTab == .tips ? postFoundation.posts : postFoundation.qaPosts) { post in
-                                Button(action: {
-                                    selectedPost = post
-                                    isDetailViewActive = true
-                                }) {
-                                    PostListItemView(post: post)
-                                }
-                                .buttonStyle(PlainButtonStyle())
+                ScrollView {
+                    VStack(spacing: 18) {
+                        ForEach(selectedTab == .tips ? postFoundation.posts : postFoundation.qaPosts) { post in
+                            Button(action: {
+                                selectedPost = post
+                                isDetailViewActive = true
+                            }) {
+                                PostListItemView(post: post)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .padding(.vertical)
                     }
-                    .navigationDestination(isPresented: $isDetailViewActive) {
-                        if let selectedPost = selectedPost {
-                            PostDetailView(post: selectedPost, postFoundation: postFoundation)
-                        }
+                    .padding(.vertical)
+                }
+                .frame(maxHeight: .infinity) // ScrollView가 화면에서 고정되도록 함
+                .navigationDestination(isPresented: $isDetailViewActive) {
+                    if let selectedPost = selectedPost {
+                        PostDetailView(post: selectedPost, postFoundation: postFoundation)
                     }
                 }
             }
         }
     }
-
+    
     public init() {}
 }
 
