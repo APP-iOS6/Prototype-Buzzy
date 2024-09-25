@@ -23,7 +23,6 @@ struct PostWriteView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // 게시판 선택 (휠 피커)
                 Button(action: {
                     showingBoardPicker = true
                 }) {
@@ -43,11 +42,14 @@ struct PostWriteView: View {
                                 Text(boardType.rawValue).tag(boardType)
                             }
                         }
+                        .font(.regular16)
                         .pickerStyle(WheelPickerStyle())
                         
                         Button("선택") {
                             showingBoardPicker = false
+                            
                         }
+                        .font(.regular20)
                         .padding()
                     }
                 }
@@ -57,20 +59,23 @@ struct PostWriteView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     // 제목 입력
                     HStack {
-                        TextField("제목을 입력해주세요.", text: $title)
-                            .font(.semibold16)
+                        TextField(" 제목을 입력해주세요.", text: $title)
+                            .font(.semibold20)
+                            .foregroundColor(.gray.opacity(0.7))
                     }
                     .padding(.vertical, 15)
                     
-                    Divider().padding(.horizontal)
+                    Divider()
                     
                     // 내용 입력
                     ZStack(alignment: .topLeading) {
                         TextEditor(text: $content)
+                            .font(.regular16)
                             .frame(maxHeight: .infinity)
                         if content.isEmpty {
                             Text("내용을 입력해주세요.")
-                                .foregroundColor(.secondary)
+                                .font(.regular16)
+                                .foregroundColor(.gray.opacity(0.5))
                                 .padding(.top, 8)
                                 .padding(.leading, 5)
                         }
@@ -88,6 +93,7 @@ struct PostWriteView: View {
                             // 각 버튼의 액션 구현
                         }) {
                             Image(systemName: icon)
+                                .font(.semibold20)
                                 .foregroundColor(.accentColor)
                                 .padding(10)
                         }
@@ -97,6 +103,7 @@ struct PostWriteView: View {
                         // 설정 버튼 액션
                     }) {
                         Image(systemName: "gearshape")
+                            .font(.semibold20)
                             .foregroundColor(.accentColor)
                             .padding(10)
                     }
@@ -115,16 +122,22 @@ struct PostWriteView: View {
                         temporarySaveCount += 1
                         // 임시저장 기능 구현
                     }
+                    .font(.regular14)
                     .foregroundColor(.secondary)
-                    Button("등록") {
+                    
+                    Button(action: {
                         // 게시글 제출 기능 구현
+                    }) {
+                        Text("등록")
+                            .font(.semibold16)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 20) // 좌우 패딩을 약간 줄임
+                            .padding(.vertical, 8)
+                            .background(Color.accentColor)
+                            .cornerRadius(5)
                     }
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 8)
-                    .background(Color.accentColor)
-                    .cornerRadius(5)
                 }
+                .padding(.trailing, -5) // trailing에 음수 패딩을 주어 오른쪽 여백을 줄임
             )
             .navigationBarTitle("", displayMode: .inline)
         }
