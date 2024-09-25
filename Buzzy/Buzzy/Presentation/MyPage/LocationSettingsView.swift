@@ -13,11 +13,26 @@ extension CLLocationCoordinate2D {
 }
 
 struct LocationSettingsView: View {
+    @State private var searchText: String = ""
+    
     var body: some View {
         VStack {
-            TextField("지역을 입력하세요", text: .constant(""))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            HStack {
+                Image(systemName: "magnifyingglass")
+                TextField("지역을 입력하세요", text: $searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                if !searchText.isEmpty {
+                    Button(action: {
+                        searchText = ""
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.gray)
+                    }
+                }
+            }
+            .padding()
+            
             Map {
                 Annotation("Parking", coordinate: .parking) {
                     VStack {
@@ -36,6 +51,7 @@ struct LocationSettingsView: View {
             }
             .mapStyle(.standard(elevation: .realistic))
             .frame(width: .infinity, height: 500)
+            .cornerRadius(15)
             
             
             Spacer()

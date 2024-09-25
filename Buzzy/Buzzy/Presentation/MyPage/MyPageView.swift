@@ -37,25 +37,72 @@ struct MyPageView: View {
                     .padding(.top, 32)
                     .padding(.bottom, 18)
                     
-                    HStack {
-                        Spacer()
+                    
+                    HStack(alignment: .center) {
+                            
+                            Spacer()
+                        
+                            VStack(alignment: .center) {
+                                Text("지원 완료")
+                                    .font(.system(size: 16, weight: .regular))
+                                 
+                                Text("1")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        
+                            
+                            Divider()
+                                .frame(width: 1, height: 30)
+                            
+                        NavigationLink(destination: MyWalletPointView()) {
+                            VStack(alignment: .center) {
+                                Text("포인트")
+                                    .font(.system(size: 16, weight: .regular))
+                                Text("15,000 P")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        }
+                            Divider()
+                                .frame(width: 1, height: 30)
+                            
+                        NavigationLink(destination: MyCouponsView()) {
+                            VStack(alignment: .center) {
+                                Text("쿠폰")
+                                    .font(.system(size: 16, weight: .regular))
+                                Text("1")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        }
+                            
+                            Spacer()
+                        }
+                        .frame(width: 370, height: 60) // 전체 너비는 넓음
+                        .background(Color.yellow)
+                        .cornerRadius(10)
+                        .shadow(radius: 3)
+                    .padding(.bottom, 25)
+                    
+                    VStack(alignment: .leading, spacing: 22) {
                         
                         
                         NavigationLink {
                             ProfileDetailsView()
                         } label: {
-                            Text("지원서 관리")
-                                .font(.regular24)
+                            Text("이력서 관리")
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
-                        .frame(width: 340, height: 50)
-                        .background(.yellow)
-                        .cornerRadius(10)
+                        Divider()
                         
-                        Spacer()
-                    }
-                    .padding(.bottom, 25)
-                    
-                    VStack(alignment: .leading, spacing: 22) {
                         
                         NavigationLink {
                             MyPostsView()
@@ -70,7 +117,8 @@ struct MyPageView: View {
                             MyCommentsView()
                         } label: {
                             Text("내가 작성한 댓글")
-                                .font(.regular20)                      .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -78,7 +126,8 @@ struct MyPageView: View {
                             MyWalletPointView()
                         } label: {
                             Text("지갑 포인트")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -86,15 +135,8 @@ struct MyPageView: View {
                             LocationSettingsView()
                         } label: {
                             Text("지역 설정")
-                                .font(.regular20)                                .foregroundColor(.black)
-                        }
-                        Divider()
-                        
-                        NavigationLink {
-                            
-                        } label: {
-                            Text("알림설정")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                         
@@ -103,7 +145,8 @@ struct MyPageView: View {
                             SettingsView()
                         } label: {
                             Text("환경설정")
-                                .font(.regular20)                                .foregroundColor(.black)
+                                .font(.regular20)
+                                .foregroundColor(.black)
                         }
                         Divider()
                     }
@@ -112,7 +155,7 @@ struct MyPageView: View {
             Spacer()
         }
         .navigationTitle("마이 페이지")
-        .padding(.horizontal, 24.0)
+        .padding(.horizontal, 15)
     }
 }
 
