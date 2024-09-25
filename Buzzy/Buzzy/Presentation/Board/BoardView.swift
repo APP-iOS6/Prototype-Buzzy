@@ -5,6 +5,7 @@
 //  Created by Hyeonjeong Sim on 9/24/24.
 //
 
+
 import SwiftUI
 
 public struct BoardView: View {
