@@ -4,8 +4,10 @@
 //
 //  Created by Hyeonjeong Sim on 9/24/24.
 //
+// 다크모드 적용 확인
 
 import SwiftUI
+
 
 public struct BoardView: View {
     @ObservedObject var postFoundation = PostFoundation()
@@ -114,7 +116,7 @@ struct PostListItemView: View {
             
             Spacer()
             
-            Image(postImage(for: post.title))
+            Image(post.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
@@ -125,23 +127,6 @@ struct PostListItemView: View {
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
         .padding(.horizontal)
-    }
-    
-    func postImage(for title: String) -> String {
-        switch title {
-        case "편의점에서 진상 만나면 멘탈 지키는 법":
-            return "ShopCat"
-        case "칼질하다 손 자주 베는 사람은 꼭 봐라":
-            return "Dogknife"
-        case "길 잘 못 찾는 사람은 무조건 GPS 쓰자":
-            return "Where"
-        case "주유소 알바할 때 손님 차 긁히면 끝장임":
-            return "GasStation"
-        case "서빙할 때 테이블 우선순위 정해놓으면 훨씬 수월함":
-            return "Serving"
-        default:
-            return "defaultImage"
-        }
     }
 }
 

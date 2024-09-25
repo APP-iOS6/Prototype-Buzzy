@@ -34,7 +34,7 @@ struct AllRecruitsView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 80, height: 80)
-                        .cornerRadius(10)
+                        .cornerRadius(15)
                 }
                 .padding()
                 .background(Color.white)
