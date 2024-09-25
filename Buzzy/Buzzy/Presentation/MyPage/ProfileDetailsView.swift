@@ -19,25 +19,36 @@ struct ProfileDetailsView: View {
             VStack(alignment: .leading, spacing: 16) {
                 
                 HStack(spacing: 16) {
-                    
-                    if let selectedImage = selectedImage {
-                        Image(uiImage: selectedImage)
+                    ZStack(alignment: .bottomTrailing) { // Use ZStack to overlay the camera icon
+                        if let selectedImage = selectedImage {
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                                .padding(.leading, 5)
+                        } else {
+                            Image("1")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                                .padding(.leading, 5)
+                        }
+                        
+                        // Camera icon
+                        Image(systemName: "camera.circle.fill")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 80)
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.white) // Change color as needed
+                            .background(Color.black.opacity(0.7))
                             .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.black, lineWidth: 1))
-                            .padding(.leading, 5)
-                    } else {
-                        Image("1")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .overlay(
-                                Circle().stroke(Color.black, lineWidth: 1))
-                            .padding(.leading, 5)
+                            .padding(5) // Adjust padding to position icon
+                    }
+                    .onTapGesture {
+                        showImagePicker = true
                     }
                     
                     VStack(alignment: .leading) {
