@@ -44,12 +44,12 @@ struct MyPageView: View {
                         
                             VStack(alignment: .center) {
                                 Text("지원 완료")
-                                    .font(.system(size: 16, weight: .regular))
-                                 
+                                    .font(.semibold16)
+
                                 Text("1")
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .font(.semibold16)
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
                         
@@ -60,11 +60,11 @@ struct MyPageView: View {
                         NavigationLink(destination: MyWalletPointView()) {
                             VStack(alignment: .center) {
                                 Text("포인트")
-                                    .font(.system(size: 16, weight: .regular))
+                                    .font(.semibold16)
                                 Text("15,000 P")
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .font(.semibold16)
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
                         }
@@ -74,11 +74,11 @@ struct MyPageView: View {
                         NavigationLink(destination: MyCouponsView()) {
                             VStack(alignment: .center) {
                                 Text("쿠폰")
-                                    .font(.system(size: 16, weight: .regular))
+                                    .font(.semibold16)
                                 Text("1")
-                                    .font(.system(size: 16, weight: .semibold))
+                                    .font(.semibold16)
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
                         }
@@ -86,7 +86,7 @@ struct MyPageView: View {
                             Spacer()
                         }
                         .frame(width: 370, height: 60) // 전체 너비는 넓음
-                        .background(Color.yellow)
+                        .background(.accent)
                         .cornerRadius(10)
                         .shadow(radius: 3)
                     .padding(.bottom, 25)
@@ -152,10 +152,10 @@ struct MyPageView: View {
                     }
                 }
             }
+            .padding(.horizontal, 15)
             Spacer()
         }
         .navigationTitle("마이 페이지")
-        .padding(.horizontal, 15)
     }
 }
 

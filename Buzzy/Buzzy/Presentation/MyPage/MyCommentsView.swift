@@ -46,6 +46,8 @@ struct MyCommentsView: View {
                     }
                     
                 }
+                .padding(.horizontal)
+                .padding(.bottom)
                 ForEach(comments) { com in
                     Text(com.title)
                         .font(.semibold20)
@@ -62,6 +64,7 @@ struct MyCommentsView: View {
                     Divider()
                         .padding(.bottom, 20.0)
                 }
+                .padding(.horizontal)
             }
             .navigationTitle("내가 작성한 댓글")
         }
@@ -70,5 +73,7 @@ struct MyCommentsView: View {
 }
 
 #Preview {
-    MyCommentsView()
+    NavigationStack {
+        MyCommentsView()
+    }
 }

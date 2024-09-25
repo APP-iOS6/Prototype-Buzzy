@@ -8,6 +8,131 @@
 import SwiftUI
 
 //현재 홈 화면쪽에 지역설정 시트가 있는데 더보기 쪽으로 옮길 예정인데, 시트를 사용할지 안할지 의견부탁드립니다
+
+struct CompanyRankingView: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Text("알바랭킹")
+                    .font(.semibold16)
+                    .padding(.leading)
+                Spacer()
+                NavigationLink(destination: HomeRankingDetailView()) {
+                    HStack {
+                        Text("더보기")
+                            .font(.subheadline)
+                        Image(systemName: "chevron.right")
+                    }
+                    .padding()
+                    .foregroundColor(.gray)
+                
+                }
+                .padding(.leading)
+            }
+            
+            HStack {
+                Image("gold")
+                    .resizable()
+                    .frame(width: 35, height: 50)
+                Image("mcdonaldLogo")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .cornerRadius(5)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("맥도날드 용인 수지 DT")
+                        .font(.bold16)
+                        .padding(.bottom,5)
+                    HStack(spacing: 4) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text("4.3")
+                        Text("(512)")
+                        Divider()
+                            .frame(height: 10)
+                        Text("난이도:")
+                        Text("상")
+                            .foregroundStyle(.red)
+    
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            HStack {
+                Image("silver")
+                    .resizable()
+                    .frame(width: 35, height: 50)
+                Image("riaLogo")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .cornerRadius(5)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("롯데리아 학동역점")
+                        .font(.bold16)
+                        .padding(.bottom,5)
+
+                    HStack(spacing: 4) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text("2.5")
+                        Text("(1047)")
+                        Divider()
+                            .frame(height: 10)
+                        Text("난이도:")
+                        Text("중")
+                            .foregroundStyle(.accent)
+    
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+                }
+                Spacer()
+            }
+            .padding(10)
+            
+            HStack {
+                Image("bronze")
+                    .resizable()
+                    .frame(width: 35, height: 50)
+                Image("momsLogo")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .cornerRadius(5)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("맘스터치 광화문점")
+                        .font(.bold16)
+                        .padding(.bottom,5)
+
+                    HStack(spacing: 4) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text("18")
+                        Text("(222)")
+                        Divider()
+                            .frame(height: 10)
+                        Text("난이도:")
+                        Text("하")
+                            .foregroundStyle(.green)
+    
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+            
+        }
+        //.padding()
+    }
+    
+}
+#Preview("rank") {
+    CompanyRankingView()
+}
 struct HomeRankingView: View {
     
     @StateObject private var viewModel = HomeRankingViewModel()
@@ -23,14 +148,14 @@ struct HomeRankingView: View {
                 HStack {
 
                     Text("알바 랭킹")
-                        .font(.bold24)
+                        .font(.semibold16)
                     
                     Spacer()
                     
                     NavigationLink(destination: HomeRankingDetailView()) {
                         HStack {
                             Text("더보기")
-                                .font(.headline)
+                                .font(.subheadline)
                             Image(systemName: "chevron.right")
                         }
                         .padding()
@@ -42,14 +167,14 @@ struct HomeRankingView: View {
                 //코드 줄이고 싶다
                
                     HStack {
-                        Button {
-                            isSheetPresented.toggle()
-                        } label: {
-                            Image(systemName: "gearshape")
-                        }
-                        .sheet(isPresented: $isSheetPresented) {
-                            ResgionSelectSheetView().presentationDetents([.fraction(2/5)])
-                        }
+//                        Button {
+//                            isSheetPresented.toggle()
+//                        } label: {
+//                            Image(systemName: "gearshape")
+//                        }
+//                        .sheet(isPresented: $isSheetPresented) {
+//                            ResgionSelectSheetView().presentationDetents([.fraction(2/5)])
+//                        }
 
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{

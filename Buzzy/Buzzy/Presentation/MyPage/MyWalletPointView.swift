@@ -33,15 +33,15 @@ struct MyWalletPointView: View {
             
             HStack {
                 Text("현재 포인트")
-                    .font(.headline)
+                    .font(.semibold16)
+                    .foregroundStyle(.black)
                 Spacer()
                 Text("\(currentPoints) P")
                     .font(.semibold24)
-                    .fontWeight(.bold)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.black)
             }
             .padding()
-            .background(Color(.systemGray6))
+            .background(.buzzySky)
             .cornerRadius(10)
             
             Picker("선택", selection: $selectedView) {
@@ -50,7 +50,7 @@ struct MyWalletPointView: View {
             }
             .padding()
             .pickerStyle(.segmented)
-            .background(Color(.yellow))
+            .background(.accent)
             .cornerRadius(10)
             
             if selectedView == "포인트 내역" {
@@ -99,7 +99,7 @@ struct MyWalletPointView: View {
                                         .foregroundColor(.white)
                                         .padding(.vertical, 8)
                                         .padding(.horizontal, 24)
-                                        .background(currentPoints >= reward.1 ? Color.blue : Color.gray) // 포인트에 따라 색상 변경
+                                        .background(currentPoints >= reward.1 ? .accent : Color.gray) // 포인트에 따라 색상 변경
                                         .cornerRadius(10)
                                 }
                                 .disabled(currentPoints < reward.1)
@@ -124,7 +124,7 @@ struct MyWalletPointView: View {
                         .font(.semibold16)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.green)
+                        .background(.accent)
                         .cornerRadius(10)
                 }
                 
@@ -134,10 +134,10 @@ struct MyWalletPointView: View {
                     print("포인트 사용")
                 }) {
                     Text("포인트 사용")
-                        .font(.semibold16)
+                        .font(.bold16)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(.buzzySky)
                         .cornerRadius(10)
                 }
             }
@@ -160,6 +160,7 @@ struct MyWalletPointView: View {
                 secondaryButton: .cancel(Text("취소"))
             )
         }
+        .padding(.horizontal)
         .navigationTitle("지갑 포인트")
     }
 }

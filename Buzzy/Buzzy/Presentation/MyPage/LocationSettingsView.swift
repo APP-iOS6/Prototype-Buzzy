@@ -61,9 +61,10 @@ struct LocationSettingsView: View {
             } label: {
                 Text("지역 설정")
                     .font(.semibold20)
+                    .foregroundStyle(.white)
             }
             .frame(width: 340, height: 50)
-            .background(.yellow)
+            .background(.accent)
             .cornerRadius(10)
             
             Spacer()

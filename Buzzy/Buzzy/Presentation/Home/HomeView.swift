@@ -40,13 +40,16 @@ struct HomeView: View {
                                     tooltipPosition: $tooltipPosition
                                 )
                                 .overlay(tooltipOverlay)
+                                .padding(.bottom, -10)
+                                CompanyRankingView()
+                                    .padding(.leading, 4)
+                                    .padding(.bottom, 5)
                                 ForEach(PartTimeKeyWord.allCases, id: \.self) { keyword in
                                     HomeScrollView(keyword: keyword)
                                         .frame(height: proxy.size.width * 0.6)
                                         .padding(.bottom)
-                                        
                                 }
-                                HomeRankingView()
+                               
                             }
                         }
                     }
@@ -101,6 +104,7 @@ struct HomeScrollView: View {
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
+                        .padding(.leading, 9)
                     }
                  //   .frame(height: 250)
  
@@ -118,5 +122,6 @@ struct HomeScrollView: View {
 }
 
 #Preview("scroll") {
-    HomeScrollView(keyword: .GoodMood)
+    HomeScrollView(keyword: .region)
 }
+

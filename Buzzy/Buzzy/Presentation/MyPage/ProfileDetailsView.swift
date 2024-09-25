@@ -60,6 +60,10 @@ struct ProfileDetailsView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Text("자기 소개")
                         .font(.semibold24)
+                    Text("50자 이상 작성하면 채용될 확률이 15% 올라요!")
+                        .font(.regular14)
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 10)
                     HStack {
                         Spacer()
                         
@@ -67,21 +71,26 @@ struct ProfileDetailsView: View {
                             print("자기소개 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.regular20)
+                                .font(.semibold20)
+                                .foregroundStyle(.white)
                                 .frame(width: 340, height: 50)
-                                .background(.yellow)
+                                .background(.accent)
                                 .cornerRadius(10)
                         }
                         Spacer()
                     }
-                    Text("Tip 50자 이상 작성하면 채용될 확률이 15% 올라요!")
-                        .font(.regular14)
-                        .padding(.bottom, 10)
+                    .padding(.bottom, 10)
                     Divider()
                     
                     
-                    Text("경력 0")
+                    Text("경력")
                         .font(.semibold24)
+                    
+                    Text("1개만 작성해도 채용될 확률이 올라요!")
+                        .font(.regular14)
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 10)
+                    
                     HStack {
                         Spacer()
                         
@@ -89,16 +98,16 @@ struct ProfileDetailsView: View {
                             print("경력 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.regular20)
+                                .font(.semibold20)
+                                .foregroundStyle(.white)
                                 .frame(width: 340, height: 50)
-                                .background(.yellow)
+                                .background(.accent)
                                 .cornerRadius(10)
                         }
                         Spacer()
                     }
-                    Text("Tip 1개만 작성해도 채용될 확률이 올라요!")
-                        .font(.regular14)
-                        .padding(.bottom, 10)
+                    .padding(.bottom, 10)
+
                     Divider()
                     
                     
@@ -111,9 +120,10 @@ struct ProfileDetailsView: View {
                             print("나의 장점 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.regular20)
+                                .font(.semibold20)
+                                .foregroundStyle(.white)
                                 .frame(width: 340, height: 50)
-                                .background(.yellow)
+                                .background(.accent)
                                 .cornerRadius(10)
                         }
                         Spacer()
@@ -136,9 +146,10 @@ struct ProfileDetailsView: View {
                             print("추가 정보 추가하기 버튼")
                         } label: {
                             Text("+추가하기")
-                                .font(.regular20)
+                                .font(.semibold20)
+                                .foregroundStyle(.white)
                                 .frame(width: 340, height: 50)
-                                .background(.yellow)
+                                .background(.accent)
                                 .cornerRadius(10)
                         }
                         Spacer()

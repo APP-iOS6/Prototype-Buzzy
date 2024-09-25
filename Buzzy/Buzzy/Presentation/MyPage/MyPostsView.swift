@@ -97,7 +97,6 @@ struct MyPostsView: View {
                         Image(systemName: "magnifyingglass")
                         TextField("검색어를 입력하세요", text: $searchText)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
                         if !searchText.isEmpty {
                             Button(action: {
                                 searchText = ""
@@ -109,6 +108,7 @@ struct MyPostsView: View {
                         }
                         
                     }
+                    .padding(.vertical)
                     
                     ForEach(posts) { post in
                         NavigationLink(destination: MyPostDetailView(post: post)) {
@@ -142,7 +142,7 @@ struct MyPostsView: View {
             }
             .navigationTitle("내가 작성한 글")
         }
-        .padding(.top, 8)
+        .padding()
     }
 }
 
