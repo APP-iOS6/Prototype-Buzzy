@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct BoardView: View {
-    @Binding var isSearchViewActive: Bool // 이 줄을 변경
+    @Binding var isSearchViewActive: Bool
     @ObservedObject var postFoundation = PostFoundation()
     @State private var selectedPost: BoardPost? = nil
     @State private var isDetailViewActive = false
@@ -82,15 +82,22 @@ public struct BoardView: View {
             .navigationDestination(isPresented: $isDetailViewActive) {
                 if let selectedPost = selectedPost {
                     PostDetailView(post: selectedPost, postFoundation: postFoundation)
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarItems(leading: Button(action: {
+                            isDetailViewActive = false
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .font(.semibold16)
+                        })
                 }
             }
             .navigationDestination(isPresented: $isSearchViewActive) {
                 BoardSearchView(isSearchViewActive: $isSearchViewActive)
             }
         }
+        
     }
 }
-
 
 struct PostListItemView: View {
     let post: BoardPost
