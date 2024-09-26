@@ -36,10 +36,11 @@ struct RecruitDetailView: View {
                 DescriptionView(recruit: recruit)
                 
                 // 지도 추가
-                VStack {
+                VStack(alignment: .leading) {
                     Text("위치")
-                        .font(.headline)
-                        .padding(.trailing)
+                        .font(.bold16)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
                     
                     Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, annotationItems: [recruit]) { recruit in
                         MapMarker(coordinate: CLLocationCoordinate2D(latitude: recruit.latitude, longitude: recruit.longitude), tint: .blue)
@@ -93,22 +94,26 @@ struct DescriptionView: View {
     var recruit: Recruit
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .leading) {
             Text(recruit.title)
                 .font(.bold24)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
             
-            Text("직무")
-                .font(.bold16)
-                .fontWeight(.medium)
-                .padding(.top, 2)
+            VStack(alignment: .leading) {
+                Text("직무")
+                    .font(.bold16)
+                    .fontWeight(.semibold)
+                    .padding(.top, 2)
+                
+                Text(recruit.jobDescription)
+                    .lineSpacing(8.0)
+                    .opacity(0.6)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(.horizontal, 0)
             
-            Text(recruit.jobDescription)
-                .lineSpacing(8.0)
-                .opacity(0.6)
-                .multilineTextAlignment(.center)
-            
+          
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("시급")
@@ -118,32 +123,6 @@ struct DescriptionView: View {
                         .opacity(0.6)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 20)
-                
-                Spacer()
-                
-                VStack(alignment: .leading) {
-                    Text("지역")
-                        .font(.bold16)
-                        .fontWeight(.semibold)
-                    Text(recruit.location)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 30)
-            }
-            .padding(.vertical)
-            
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("일하는 기간")
-                        .font(.bold16)
-                        .fontWeight(.semibold)
-                    Text(recruit.workPeriod)
-                        .opacity(0.6)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 20)
                 
                 Spacer()
                 
@@ -155,7 +134,32 @@ struct DescriptionView: View {
                         .opacity(0.6)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 30)
+                .padding(.leading, 40)
+            }
+            .padding(.vertical)
+
+           
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text("일하는 기간")
+                        .font(.bold16)
+                        .fontWeight(.semibold)
+                    Text(recruit.workPeriod)
+                        .opacity(0.6)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                
+                VStack(alignment: .leading) {
+                    Text("지역")
+                        .font(.bold16)
+                        .fontWeight(.semibold)
+                    Text(recruit.location)
+                        .opacity(0.6)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 40)
             }
             .padding(.vertical)
         }
@@ -163,8 +167,13 @@ struct DescriptionView: View {
     }
 }
 
+
+
+
+
+
 struct RecruitDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RecruitDetailView(recruit: recruits[0])
+        RecruitDetailView(recruit: recruits[1])
     }
 }
