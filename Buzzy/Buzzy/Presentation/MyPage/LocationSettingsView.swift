@@ -1,3 +1,10 @@
+//
+//  LocationSettingsView.swift
+//  Buzzy
+//
+//  Created by Min on 9/25/24.
+//
+
 import SwiftUI
 import MapKit
 
