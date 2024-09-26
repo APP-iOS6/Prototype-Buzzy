@@ -78,7 +78,7 @@ struct MyWalletPointView: View {
                                 .padding(.vertical, 8)
                         }
                         .padding(.vertical, 10)
-                        .padding(.horizontal)
+//                        .padding(.horizontal)
 //                        .background(Color(.systemGray6))
                         .cornerRadius(10)
                     }
