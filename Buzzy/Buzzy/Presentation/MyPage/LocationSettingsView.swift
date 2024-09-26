@@ -84,7 +84,7 @@ struct LocationSettingsView: View {
     }
 }
 
-// Custom MapView using UIViewRepresentable
+
 struct MapView: UIViewRepresentable {
     @Binding var selectedText: String? // 선택된 텍스트 바인딩
     var userLocation: CLLocationCoordinate2D? // 사용자 위치
@@ -181,7 +181,7 @@ struct MapView: UIViewRepresentable {
     }
 }
 
-// Location Manager to handle user's location
+
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     @Published var location: CLLocationCoordinate2D?
