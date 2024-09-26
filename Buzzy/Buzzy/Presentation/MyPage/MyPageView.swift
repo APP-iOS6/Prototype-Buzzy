@@ -41,8 +41,7 @@ struct MyPageView: View {
                         .padding(.bottom, 18)
                         
                         
-                        HStack(alignment: .center) {
-                            
+                        HStack(alignment: .center, spacing: 0) {
                             Spacer()
                             
                             VStack(alignment: .center) {
@@ -53,13 +52,15 @@ struct MyPageView: View {
                                     .font(.semibold16)
                             }
                             .foregroundColor(.black)
-                            .frame(maxWidth: .infinity)
                             .padding()
-                            
-                            
+
+                            Spacer()
+
                             Divider()
                                 .frame(width: 1, height: 30)
-                            
+
+                            Spacer()
+
                             NavigationLink(destination: MyWalletPointView()) {
                                 VStack(alignment: .center) {
                                     Text("포인트")
@@ -68,12 +69,16 @@ struct MyPageView: View {
                                         .font(.semibold16)
                                 }
                                 .foregroundColor(.black)
-                                .frame(maxWidth: .infinity)
                                 .padding()
                             }
+
+                            Spacer()
+
                             Divider()
                                 .frame(width: 1, height: 30)
-                            
+
+                            Spacer()
+
                             NavigationLink(destination: MyCouponsView()) {
                                 VStack(alignment: .center) {
                                     Text("쿠폰")
@@ -82,18 +87,18 @@ struct MyPageView: View {
                                         .font(.semibold16)
                                 }
                                 .foregroundColor(.black)
-                                .frame(maxWidth: .infinity)
                                 .padding()
                             }
-                            
+
                             Spacer()
                         }
-                        .frame(width: .infinity, height: 60) // 전체 너비는 넓음
+                        .frame(width: 350, height: 60)
                         .background(.buzzySky)
                         .cornerRadius(10)
                         .shadow(radius: 3)
                         .padding(.bottom, 3)
-                        
+                        .padding(.leading, 9)
+
                         HStack {
                             Spacer()
                             VStack {

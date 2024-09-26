@@ -58,22 +58,30 @@ struct MyWalletPointView: View {
                 Text("포인트 적립/사용 내역")
                     .font(.semibold20)
                 
-                List(transactionHistory, id: \.0) { transaction in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(transaction.0)
-                                .font(.regular16)
-                            Text(transaction.2)
-                                .font(.regular14)
-                                .foregroundColor(.gray)
+                
+                    ForEach(transactionHistory, id: \.0) { transaction in
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(transaction.0)
+                                        .font(.regular16)
+                                    Text(transaction.2)
+                                        .font(.regular14)
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                                Text(transaction.1)
+                                    .font(.subheadline)
+                                    .foregroundColor(transaction.1.contains("+") ? .red : .blue)
+                            }
+                            Divider()
+                                .padding(.vertical, 8)
                         }
-                        Spacer()
-                        Text(transaction.1)
-                            .font(.subheadline)
-                            .foregroundColor(transaction.1.contains("+") ? .red : .blue)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+//                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
                     }
-                }
-                .listStyle(PlainListStyle())
                 
             } else if selectedView == "보상 교환" {
 
