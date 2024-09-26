@@ -273,7 +273,8 @@ struct RecuritCardView: View {
         VStack {
             image
                 .resizable()
-                .frame(width: size, height: 200 * (size / 210))
+                .scaledToFit()
+                .frame(width: size, height: size * 0.95)
                 .cornerRadius(20)
             
             HStack {
