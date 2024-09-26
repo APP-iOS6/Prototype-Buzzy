@@ -1,9 +1,74 @@
-#  **🍯Buzzy**
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2f5da0d9-a897-470d-a16b-0d246fa10a47" alt="Buzzy Logo" width="300"/>
+</p>
 
-# 📢About Buzzy
-### 💡ADS
-사용자들이 알바 꿀팁과 사업장 평가 정보를 쉽게 공유하고, 업무 난이도를 시각적으로 확인할 수 있는 직관적인 UI와 맞춤형 알바 추천 기능을 통해 사용자가 편리하게 정보를 얻는 앱
+<h3 align="center"> 🚀 SwiftUI Prototype </h3>
+<h5 align="center"> ⏳ 2024/09/23 - 2024/09/26 </h5>
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line" />
+</div>
+
+<h3 align="center"> 👥 Developer </h3>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/gadisom.png" width="100" />
+        <br />
+        <strong>김정원</strong><br />
+        PM, 홈화면<br />
+        <a href="https://github.com/gadisom"><button>GitHub</button></a>
+      </td>
+      <td align="center">
+        <img src="https://github.com/KimLips.png" width="100" />
+        <br />
+        <strong>김원호</strong><br />
+        홈화면<br />
+        <a href="https://github.com/KimLips"><button>GitHub</button></a>
+      </td>
+      <td align="center">
+        <img src="https://github.com/Hyeonjeong-Sim.png" width="100" />
+        <br />
+        <strong>심현정</strong><br />
+        게시판<br />
+        <a href="https://github.com/Hyeonjeong-Sim"><button>GitHub</button></a>
+      </td>
+      <td align="center">
+        <img src="https://github.com/Juno730.png" width="100" />
+        <br />
+        <strong>이주노</strong><br />
+        모집<br />
+        <a href="https://github.com/Juno730"><button>GitHub</button></a>
+      </td>
+      <td align="center">
+        <img src="https://github.com/Jeolmi123.png" width="100" />
+        <br />
+        <strong>이정민</strong><br />
+        마이<br />
+        <a href="https://github.com/Jeolmi123"><button>GitHub</button></a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="Rainbow Line" />
+</div>
+
+## 🎯 ADS
+- **타겟 사용자**: 18~35세 대학생, 직장인, 이직 준비생
+- **주요 지역**: 모든 지역
+- **마케팅 전략**: 커뮤니티 활성화, 사용자 리뷰 이벤트
+- **유지 전략**: 시간별 업무 난이도를 보여주는 맞춤형 알바 추천
+
+## 🎭 페르소나 (Persona)
+
+- **황현진 (25세, 대학생)**: 주말 알바를 구하는 대학생, 신뢰할 수 있는 사업장 정보와 알바 난이도에 관심이 많음.
+- **이용복 (29세, 직장인)**: 주말 단기 알바를 찾는 직장인, 사업장 평판과 리뷰를 중요하게 생각함.
+- **장원영 (22세, 휴학생)**: 방학 동안 단기 알바를 찾는 휴학생, 알바 난이도를 시각적으로 확인하고 싶어함.
+  
 # **📱 주요 화면 구성**
 ### 1. **홈** 
 중요한 키워드를 바탕으로 알바 사업장의 정보를 보여주는 메인 화면
@@ -45,9 +110,20 @@ Q&A: 알바생들이 궁금한 사항을 자유롭게 질문할 수 있는 Q&A �
 ## 🧑‍🏫 튜나 강사님의 프리미엄 피드백
 
 ### 홈화면
--
--
--
+- i 아이콘 손가락 타격 영역이 커야함
+- 업무별 난이도 : 내림차 오름차가 필요할 거 같음
+- 업무별 난이도 : 회사 로고이미지 비율 비례 꼭! 절대!!! 지켜야함 99.999999% 법적으로 문제 됨.
+- 시간 별 업무 강도 : 좋은 정보다(정보를 조금 더 직관적으로 보여주려면 배경에 복잡도를 표현해주면 좀 더 쓸모있을듯)
+- 다이어그램 색으로 혼잡도를 표현하면 더 좋을듯
+- 유저 평가 몇개 받았는지를 표시해주면 좋을듯(신뢰성)
+- 별모양 심볼에 일관성이 필요할듯
+- 차라리 난이도 5.6~난이도 4.7 숫자로 보여줘도 직관적이고 정직성 있어보일듯
+- 정보 전달이 최우선이기 때문에 텍스트가 우선이라면 심볼을 버리고 텍스트를 택하는 방향이 좋을 수 있음
+- 홈 화면 전체적인 UI 그리드의 문제가 있음
+- 메인에서 다음뷰 마진이 2배가 됨 마진을 16으로 가져가기로 약속했으면 16으로 유지를 하는 게 일관성 있고 중요함
+- 근무조건 잘 만들었다
+- 플로팅 여전히 싫어하심 안드로이드의 똥찌끄래기..ㅎ
+- 들여쓰기 맥락이 이상하다 
 ### 게시판
 -
 -
@@ -126,16 +202,6 @@ ADS 상의 "사용자들이 알바 꿀팁과 사업장 평가 정보를 쉽게 �
 
 - **Xcode:** 16.0
 - **iOS:** 18.0
-
-# 👥 개발자
-| 이름   | 역할                       | GitHub                        |
-|--------|----------------------------|-------------------------------|
-| 김정원 | PM, 홈화면  | [gadisom](https://github.com/gadisom) |
-| 김원호 |  홈화면    | [KimLips](https://github.com/KimLips) |
-| 심현정 |  게시판    | [Hyeonjeong-Sim](https://github.com/Hyeonjeong-Sim) |
-| 이주노 |  모집   | [Juno730](https://github.com/Juno730) |
-| 이정민 |  마이   |  [Jeolmi123](https://github.com/Jeolmi123) |
-
 
 # **📄 라이선스**
 
